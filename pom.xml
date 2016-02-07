@@ -5,7 +5,7 @@
   <artifactId>todo-issue</artifactId>
   <packaging>maven-plugin</packaging>
   <version>0.1</version>
-  <name>todo-issue Maven Mojo</name>
+  <name>todo-issue</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
@@ -14,10 +14,35 @@
       <version>2.0</version>
     </dependency>
     <dependency>
+      <groupId>org.apache.maven.plugin-tools</groupId>
+      <artifactId>maven-plugin-annotations</artifactId>
+      <version>3.4</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <!--<build>-->
+    <!--<plugins>-->
+      <!--<plugin>-->
+        <!--<groupId>com.qulice</groupId>-->
+        <!--<artifactId>qulice-maven-plugin</artifactId>-->
+        <!--<version>0.16</version>-->
+        <!--<configuration>-->
+          <!--<license>file:${basedir}/LICENSE.txt</license>-->
+        <!--</configuration>-->
+        <!--<executions>-->
+          <!--<execution>-->
+            <!--<goals>-->
+              <!--<goal>check</goal>-->
+            <!--</goals>-->
+          <!--</execution>-->
+        <!--</executions>-->
+      <!--</plugin>-->
+    <!--</plugins>-->
+  <!--</build>-->
 </project>

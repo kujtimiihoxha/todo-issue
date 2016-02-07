@@ -1,81 +1,84 @@
+/**
+ * Copyright (c) 2016 Kujtim Hoxha
+ *
+ * Permission is hereby granted, free of charge,
+ * to any person obtaining a copy of this software
+ * and associated documentation files (the "Software"),
+ * to deal in the Software without restriction,
+ * including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit
+ * persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice
+ * shall be included in all copies or substantial
+ * portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+ * TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
+ * SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
+ * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+ * OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 package com.kujtimhoxha.maven;
 
-/*
- * Copyright 2001-2005 The Apache Software Foundation.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
+import com.kujtimhoxha.maven.validator.SourceValidator;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.nio.file.Paths;
 
 /**
- * Goal which touches a timestamp file.
- *
- * @goal touch
- * 
- * @phase process-sources
+ * Find.
+ * @author Kujtim Hoxha (kujtimii.h@gmail.com)
+ * @version $Id$
+ * @since 0.1
  */
-public class Find
-    extends AbstractMojo
-{
+@Mojo(name = "find", defaultPhase = LifecyclePhase.PROCESS_SOURCES)
+public class Find extends AbstractMojo {
+
     /**
-     * Location of the file.
-     * @parameter expression="${project.build.directory}"
-     * @required
+     * Source directory.
      */
-    private File outputDirectory;
+    @Parameter(property = "source", required = true)
+    private String source;
 
-    public void execute()
-        throws MojoExecutionException
-    {
-        File f = outputDirectory;
+    /**
+     * Excluded files or directories.
+     */
+    @Parameter(property = "excludes")
+    private String[] excludes;
 
-        if ( !f.exists() )
-        {
-            f.mkdirs();
-        }
+    /**
+     * File types to search for todo's.
+     */
+    @Parameter(property = "types", defaultValue = ".java")
+    private String[] types;
 
-        File touch = new File( f, "touch.txt" );
-
-        FileWriter w = null;
-        try
-        {
-            w = new FileWriter( touch );
-
-            w.write( "touch.txt" );
-        }
-        catch ( IOException e )
-        {
-            throw new MojoExecutionException( "Error creating file " + touch, e );
-        }
-        finally
-        {
-            if ( w != null )
-            {
-                try
-                {
-                    w.close();
-                }
-                catch ( IOException e )
-                {
-                    // ignore
-                }
-            }
+    /**
+     * Base directory.
+     */
+    @Parameter(property = "base", defaultValue = "${basedir}")
+    private String base;
+    /**
+     * Execute.
+     * @throws MojoExecutionException if there is an exception
+     *  in executing the goal
+     */
+    public void execute() throws MojoExecutionException {
+        if (!new SourceValidator().validate(Paths.get(base+this.source).toString())) {
+            throw new MojoExecutionException(
+                "Directory given does not exist or is wrong"
+            );
         }
     }
 }
