@@ -1,7 +1,8 @@
 {
   "git-server":"Github",
   "type":"user",
-  "username":"kujtimiihoxha",
+  "repository-username":"kujtimiihoxha",
+  "issuer-username":"kujtimiihoxha",
   "token":"token",
   "repository":"todo-issue",
   "project-id":"0"

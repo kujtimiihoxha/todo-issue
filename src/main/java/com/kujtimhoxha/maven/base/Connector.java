@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2016 Kujtim Hoxha
- *
+ * <p>
  * Permission is hereby granted, free of charge,
  * to any person obtaining a copy of this software
  * and associated documentation files (the "Software"),
@@ -10,11 +10,11 @@
  * and/or sell copies of the Software, and to permit
  * persons to whom the Software is furnished to do so,
  * subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice
  * shall be included in all copies or substantial
  * portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
  * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
  * TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
@@ -25,32 +25,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.maven.matcher;
+package com.kujtimhoxha.maven.base;
 
-import com.kujtimhoxha.maven.base.Finder;
+import com.kujtimhoxha.maven.config.Configurations;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.IOException;
+import java.util.List;
 
 /**
- * MilestoneFinder.
+ * Connector.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public class MilestoneFinder implements Finder {
-
-    /**
-     * Pattern for GitLabMilestone in comment.
-     */
-    private static final Pattern PATTERN = Pattern.compile("/`(.*?)/`");
-
-    public String find(String content) {
-        Matcher matcher = PATTERN.matcher(content.replaceAll("\\n",""));
-        if(matcher.find()){
-            return matcher.group(1).replaceAll("\\s","");
-        }
-        return null;
-    }
+public interface Connector<IssueResponse,IssueCreate> {
+    List<IssueResponse> getIssues(Configurations config) throws IOException;
+    IssueResponse createIssue(Configurations config,IssueCreate issue) throws IOException;
 }
