@@ -17,7 +17,7 @@ Todo-issue is a plugin that lets you easily write github issues while you are co
  
  - ```[todo] ```: every todo that will be an issue must start with this tag. **required**
  - ```${title}$```: will be the title of the issue. **required**
- - ```#/{body}#/``` : will be the body of the issue.
+ - ```#/{body}#/``` : will be the body of the issue. **required**
  - ```~{assignee}~``` : issue assigned to.
  - ```%{label,label1,label2}%``` : labels of the issue separated by commas. 
  - ```/`{milestone}/``` : milestone 
