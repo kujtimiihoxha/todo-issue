@@ -25,21 +25,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.maven.matcher;
+package com.kujtimhoxha.maven.base;
 
 /**
- * Finder.
+ * Validator.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public interface Finder {
-    /**
-     * Find.
-     * @param content comment text.
-     * @return returns the needed string or null if
-     *  the string is not found.
-     */
-    String find(String content);
+public interface Validator {
+    boolean validate(final String input);
 }

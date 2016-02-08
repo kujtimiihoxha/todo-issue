@@ -27,6 +27,8 @@
  */
 package com.kujtimhoxha.maven.matcher;
 
+import com.kujtimhoxha.maven.base.Finder;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

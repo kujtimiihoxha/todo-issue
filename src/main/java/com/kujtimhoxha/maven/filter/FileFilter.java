@@ -25,22 +25,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.maven.validator;
-
-import com.kujtimhoxha.maven.base.Validator;
+package com.kujtimhoxha.maven.filter;
 
 import java.io.File;
+import java.io.FilenameFilter;
+import java.nio.file.Paths;
+import java.util.List;
 
 /**
- * SourceValidator.
+ * FileFilter.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public class SourceValidator implements Validator {
-    public boolean validate(final String input) {
-        final File file = new File(input);
-        return file.exists() && file.isDirectory();
+public class FileFilter implements FilenameFilter {
+    private  final List<String>  files;
+    public FileFilter(final List<String> files) {
+        for(int i=0;i<files.size();i++) {
+            files.set(i, Paths.get(files.get(i)).toString()) ;
+        }
+        this.files = files;
+    }
+    public boolean accept(File dir, String name) {
+        if(dir.exists()){
+            for(String exc:this.files){
+                if(dir.getAbsolutePath().equals(exc)){
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 }

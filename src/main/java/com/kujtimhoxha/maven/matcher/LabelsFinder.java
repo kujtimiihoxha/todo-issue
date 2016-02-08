@@ -27,6 +27,8 @@
  */
 package com.kujtimhoxha.maven.matcher;
 
+import com.kujtimhoxha.maven.base.Finder;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,7 +39,7 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since 0.1
  */
-public class LabelsFinder implements Finder{
+public class LabelsFinder implements Finder {
 
     /**
      * Pattern for Labels in comment.

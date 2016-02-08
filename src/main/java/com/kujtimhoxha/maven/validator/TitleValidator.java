@@ -26,6 +26,7 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.kujtimhoxha.maven.validator;
+import com.kujtimhoxha.maven.base.Validator;
 import com.kujtimhoxha.maven.matcher.TitleFinder;
 
 /**

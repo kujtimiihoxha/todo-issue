@@ -68,6 +68,13 @@ public class Find extends AbstractMojo {
      */
     @Parameter(property = "base", defaultValue = "${basedir}")
     private String base;
+
+    /**
+     * Todo.json Path.
+     */
+    @Parameter(property = "config", defaultValue = "${basedir}/todo.json")
+    private String config;
+
     /**
      * Execute.
      * @throws MojoExecutionException if there is an exception

@@ -25,22 +25,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.maven.validator;
-
-import com.kujtimhoxha.maven.base.Validator;
-
-import java.io.File;
+package com.kujtimhoxha.maven.base;
 
 /**
- * SourceValidator.
+ * Finder.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public class SourceValidator implements Validator {
-    public boolean validate(final String input) {
-        final File file = new File(input);
-        return file.exists() && file.isDirectory();
-    }
+public interface Finder {
+    /**
+     * Find.
+     * @param content comment text.
+     * @return returns the needed string or null if
+     *  the string is not found.
+     */
+    String find(String content);
 }
