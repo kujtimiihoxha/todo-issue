@@ -26,14 +26,3 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.kujtimhoxha.maven.validator;
-
-/**
- * Validator.
- *
- * @author Kujtim Hoxha (kujtimii.h@gmail.com)
- * @version $Id$
- * @since 0.1
- */
-public interface Validator {
-    boolean validate(final String input);
-}
