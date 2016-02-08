@@ -23,6 +23,7 @@ Todo-issue is a plugin that lets you easily write github issues while you are co
  - ```/`{milestone}/``` : milestone 
 
 ### todo.json
+Before you run the ```find``` goal you must add the file todo.json to the base directory(where the pom.xml is).<p>
 ```json
 {
   "git-server":"Github",
