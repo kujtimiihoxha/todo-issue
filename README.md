@@ -60,7 +60,7 @@ Before you run the ```find``` goal you must add the file todo.json to the base d
 ```mvn clean com.kujtimhoxha.plugins:todo-issue-plugin:find -Dsource={source-root-path}```
 - -Dsource : sets the source root **required** 
 - To exclude files/folders add ```-Dexcludes```:<br>
-```mvn clean com.kujtimhoxha.plugins:todo-issue-plugin:find -Dsource={root-path} 
+```mvn clean com.kujtimhoxha.plugins:todo-issue-plugin:find -Dsource={source-root-path} 
 -Dexcludes={excluded-path-one},{excluded-path-two}```
 - To add a different ```todo.json``` add ``` -Dconfig={new-config-path}```.
 
