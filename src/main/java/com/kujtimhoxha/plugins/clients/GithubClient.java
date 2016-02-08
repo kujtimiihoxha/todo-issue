@@ -25,7 +25,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.plugins.service;
+package com.kujtimhoxha.plugins.clients;
 
 import com.kujtimhoxha.plugins.base.Service;
 import com.kujtimhoxha.plugins.config.ConfigReader;
@@ -93,7 +93,17 @@ public class GithubClient implements Service{
                     final String milestone = new MilestoneFinder().find(comment);
                     final String labels = new LabelsFinder().find(comment);
                     issue.setTitle(title);
-                    issue.setBody(body);
+                    final StringBuilder builder=new StringBuilder(body);
+                    builder.append("\n").append("\n").append("\n").append(
+                            String.format("```todo-issue``` File : [%s](%s)\n",
+                            todo.getFile().getName(),
+                            "https://github.com/"+
+                                    ConfigReader.getConfig(config).getRepositoryUsername()+
+                                    "/"+ConfigReader.getConfig(config).getRepository()+
+                                    "/tree/master"+todo.getFile().getPath().replace(
+                                    System.getProperty("user.dir"),""))
+                    );
+                    issue.setBody(builder.toString());
                     issue.setAssignee(assignee);
                     if(labels!=null) {
                         issue.setLabels(Arrays.asList(labels.split(",")));

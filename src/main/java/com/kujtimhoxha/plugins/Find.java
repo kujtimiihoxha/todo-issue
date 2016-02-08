@@ -30,7 +30,7 @@ package com.kujtimhoxha.plugins;
 import com.kujtimhoxha.plugins.config.ConfigReader;
 import com.kujtimhoxha.plugins.filter.FileFilter;
 import com.kujtimhoxha.plugins.filter.FolderFilter;
-import com.kujtimhoxha.plugins.service.GithubClient;
+import com.kujtimhoxha.plugins.clients.GithubClient;
 import com.kujtimhoxha.plugins.validator.SourceValidator;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -52,6 +52,12 @@ import java.util.List;
  */
 @Mojo(name = "find", defaultPhase = LifecyclePhase.PROCESS_SOURCES)
 public class Find extends AbstractMojo {
+    /**
+     * [todo] $ Testing todo [issue=#27]  $
+     * #/
+     * Test if it adds the file name.
+     * #/
+     */
     /**
      * Files to search for todo's.
      */
