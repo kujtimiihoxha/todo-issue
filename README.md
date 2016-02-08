@@ -5,7 +5,25 @@ Todo-issue is a plugin that lets you easily write github issues while you are co
 add comments in the source code that will be translated to github issues, this will help the developing team to keep
 track of the bugs and tasks assigned to specific users.
 
-
+### Syntax
+ 
+ 
+     /**
+      * [todo] $ Issue Title $
+      * #/
+      * Issue Body description
+      * #/
+      * ~kujtimiihoxha~
+      * %bug,enhancement,any,label%
+      * /`1.0.1/`
+      */
+ 
+ - ```[todo] ```: every todo that will be an issue must start with this tag. **required**
+ - ```${title}$```: will be the title of the issue. **required**
+ - ```#/{body}#/``` : will be the body of the issue.
+ - ```~{assignee}~``` : issue assigned to.
+ - ```%{label,label1,label2}%``` : labels of the issue separated by commas. 
+ - ```/`{milestone}/``` : milestone 
 
 ### todo.json
 ```json
