@@ -2,6 +2,6 @@ language: java
 jdk:
   - oraclejdk8
 script:
-  - mvn celan install
+  - mvn clean install
   - mvn test
   - mvn clean com.kujtimhoxha.maven:todo-issue:find -Dsource=/src/main/java -Dconfig=${basedir}/todo.json
