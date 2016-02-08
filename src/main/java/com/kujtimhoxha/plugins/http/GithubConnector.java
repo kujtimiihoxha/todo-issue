@@ -65,6 +65,7 @@ public class GithubConnector implements Connector<GithubIssueResponse,GithubIssu
                     }
                 });
         GithubIssuesUrl url=new GithubIssuesUrl(config.getRepository(),config.getRepositoryUsername());
+        url.set("access_token",config.getToken());
         url.set("state","all");
         HttpRequest request = requestFactory.buildGetRequest(url);
         GithubIssueResponse[] issues=request.execute().parseAs(GithubIssueResponse[].class);

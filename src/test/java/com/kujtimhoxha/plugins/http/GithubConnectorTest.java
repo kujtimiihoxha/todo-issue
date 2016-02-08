@@ -26,7 +26,7 @@ public class GithubConnectorTest {
     @Test
     public void testGetIssues() throws Exception {
         List<GithubIssueResponse> issues=new GithubConnector().getIssues(
-            ConfigReader.getConfig(System.getProperty("user.dir")+"/todo.json")
+            ConfigReader.getConfig(System.getProperty("user.dir")+"/todo-issue.json")
         );
         Assert.assertTrue("Issue get failed",issues.size()>0);
     }
@@ -44,7 +44,7 @@ public class GithubConnectorTest {
         );
         GithubIssueResponse issue=new GithubConnector().createIssue(
                 ConfigReader.getConfig(
-                    System.getProperty("user.dir")+"/todo.json"
+                    System.getProperty("user.dir")+"/todo-issue.json"
                 ),
                 post
         );

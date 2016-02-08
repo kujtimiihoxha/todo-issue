@@ -52,7 +52,6 @@ import java.util.List;
  */
 @Mojo(name = "find", defaultPhase = LifecyclePhase.PROCESS_SOURCES)
 public class Find extends AbstractMojo {
-
     /**
      * Files to search for todo's.
      */
