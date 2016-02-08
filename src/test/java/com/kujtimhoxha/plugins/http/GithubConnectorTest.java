@@ -24,6 +24,7 @@ import java.util.List;
 public class GithubConnectorTest {
 
     @Test
+    @Ignore
     public void testGetIssues() throws Exception {
         List<GithubIssueResponse> issues=new GithubConnector().getIssues(
             ConfigReader.getConfig(System.getProperty("user.dir")+"/todo-issue.json")
