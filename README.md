@@ -39,10 +39,10 @@ track of the bugs and tasks assigned to specific users.
 
 ```
 
- - git-server: can be "Github" or "Gitlab".
- - type: if using Gitlab can be "org" or "user".
- - repository-username: the repository user.
- - issuer-username: the user who is writing the issues.
- - token: the user access token.
- - repository: the repository to post issues to .
- - project-id: if the git-server is Gitlab you must provide the project-id
+ - ```git-server``` : can be "Github" or "Gitlab".
+ - ```type``` : if using Gitlab can be "org" or "user".
+ - ```repository-username``` : the repository user.
+ - ```issuer-username``` : the user who is writing the issues.
+ - ```token``` : the user access token.
+ - ```repository``` : the repository to post issues to .
+ - ```project-id``` : if the git-server is Gitlab you must provide the project-id
