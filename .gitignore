@@ -2,3 +2,4 @@
 *.iml
 /target
 /todo.json
+/todo-issue.json
