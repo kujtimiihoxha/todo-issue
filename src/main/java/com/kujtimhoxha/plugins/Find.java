@@ -53,7 +53,7 @@ import java.util.List;
 @Mojo(name = "find", defaultPhase = LifecyclePhase.PROCESS_SOURCES)
 public class Find extends AbstractMojo {
     /**
-     * [todo] $ Testing todo [issue=#27]  $
+     * [todo] $ Testing todo $
      * #/
      * Test if it adds the file name.
      * #/

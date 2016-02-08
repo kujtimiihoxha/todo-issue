@@ -53,7 +53,14 @@ Before you run the ```find``` goal you must add the file todo.json to the base d
  - ```token``` : the user access token.
  - ```repository``` : the repository to post issues to .
  - ```project-id``` : if the git-server is Gitlab you must provide the project-id
- 
+### Usage
+To execute find goal run:
+```mvn clean com.kujtimhoxha.plugins:todo-issue-plugin:find -Dsource={root-path}```
+   - -Dsource : sets the source root **required**
+To exclude files/folders add ```-Dexcludes```.
+```mvn clean com.kujtimhoxha.plugins:todo-issue-plugin:find -Dsource={root-path} 
+-Dexcludes={excluded-path-one},{excluded-path-two}```
+To add a different ```todo.json``` add ``` -Dconfig={new-config-path}```
 ### Contribute
 To help improve todo-issue clone this repo and submit pull requests with suggested changes.<br>
 Add unit tests for new features added and/or missing tests.<br>
