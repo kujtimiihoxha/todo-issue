@@ -20,7 +20,7 @@ Todo-issue is a plugin that lets you easily write github issues while you are co
  - ```#/{body}#/``` : will be the body of the issue. **required**
  - ```~{assignee}~``` : issue assigned to.
  - ```%{label,label1,label2}%``` : labels of the issue separated by commas. 
- - ```/`{milestone}/``` : milestone 
+ - ```/`{milestone}/``` : milestone.
 
 ### todo.json
 Before you run the ```find``` goal you must add the file todo.json to the base directory(where the pom.xml is).<p>
