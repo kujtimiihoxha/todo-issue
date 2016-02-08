@@ -1,12 +1,9 @@
 Maven plugin to convert TODO-s to Github/Gitlab issues. [![Build Status](https://travis-ci.org/kujtimiihoxha/todo-issue.svg?branch=master)](https://travis-ci.org/kujtimiihoxha/todo-issue)
 ------------------------------------------------------
 ### About
-Todo-issue is a plugin that lets you easily write github issues while you are coding,this plugin enables the user to 
-add comments in the source code that will be translated to github issues, this will help the developing team to keep
-track of the bugs and tasks assigned to specific users.
+Todo-issue is a plugin that lets you easily write github issues while you are coding.<br>This plugin enables the user to add comments in the source code that will be translated to github issues.<br>This will help the developing team to keep track of the bugs and tasks assigned to specific users.
 
 ### Syntax
- 
  
      /**
       * [todo] $ Issue Title $
@@ -46,3 +43,10 @@ track of the bugs and tasks assigned to specific users.
  - ```token``` : the user access token.
  - ```repository``` : the repository to post issues to .
  - ```project-id``` : if the git-server is Gitlab you must provide the project-id
+### Contribute
+To help improve todo-issue clone this repo and submit pull requests with suggested changes.
+Add unit tests for new features added and/or missing tests.
+Please test your changes before sending a pull request by running :
+``` mvn clean install ```
+### Licence
+The todo-issue is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
