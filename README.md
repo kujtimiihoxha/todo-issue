@@ -72,7 +72,9 @@ mvn clean com.kujtimhoxha.plugins:todo-issue-plugin:find -Dsource={source-root-p
 To help improve todo-issue clone this repo and submit pull requests with suggested changes.<br>
 Add unit tests for new features added and/or missing tests.<br>
 Please test your changes before sending a pull request by running :<br>
-``` mvn clean install ``` <br>  
+```bash
+ mvn clean install 
+```   
 ### Licence
 
 The todo-issue is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
