@@ -43,6 +43,7 @@ Todo-issue is a plugin that lets you easily write github issues while you are co
  - ```token``` : the user access token.
  - ```repository``` : the repository to post issues to .
  - ```project-id``` : if the git-server is Gitlab you must provide the project-id
+ 
 ### Contribute
 To help improve todo-issue clone this repo and submit pull requests with suggested changes.
 Add unit tests for new features added and/or missing tests.
