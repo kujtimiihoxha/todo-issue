@@ -8,7 +8,16 @@ Todo-issue is a plugin that lets you easily write github issues while you are co
      /**
       * [todo] $ Issue Title $
       * #/
-      * Issue Body description
+      * Issue Body.
+      * ----------------------
+      *     ## My List
+      *       - Item1
+      *       - Item2
+      * ### Some code.
+      *  ```java
+      *  private static final String hello="Hello World";
+      *    ``` 
+      * [Markdown](http://supported.com)
       * #/
       * ~kujtimiihoxha~
       * %bug,enhancement,any,label%
