@@ -76,36 +76,69 @@ public class GithubClient implements Service{
         if(Arrays.asList(types).contains(".java")){
            todos.addAll(new JavaFileReader(files).todos());
         }
-        List<GithubIssueResponse>issues=new GithubConnector().getIssues(ConfigReader.getConfig(config));
-
+        removeClosed(todos);
         for (Todo todo:todos) {
-            for (String comment:todo.getComments()){
-                final GithubIssuePost issue=new GithubIssuePost();
-                final String title=new TitleFinder().find(comment);
-                if(title==null)throw new MojoExecutionException(
-                        "Todo has no title in file "+todo.getFile().getPath()
-                );
-                final String body=new BodyFinder().find(comment);
-                if(body==null)throw new MojoExecutionException(
-                        "Todo has no body in file "+todo.getFile().getPath()
-                );
-                final String assignee=new AssigneeFinder().find(comment);
-                final String milestone=new MilestoneFinder().find(comment);
-                final  String labels=new LabelsFinder().find(comment);
-                issue.setTitle(title);
-                issue.setBody(body);
-                issue.setAssignee(assignee);
-                issue.setLabels(Arrays.asList(labels.split(",")));
-                issue.setMilestone(milestone);
-                try {
-                    GithubIssueResponse response = new GithubConnector().createIssue(ConfigReader.getConfig(config), issue);
-                    issueCreated(response,todo);
-                }catch (Exception e){
-                    throw new MojoExecutionException(e.getMessage());
+            for (String comment:todo.getComments()) {
+                if (!comment.contains("[issue=")) {
+                    final GithubIssuePost issue = new GithubIssuePost();
+                    final String title = new TitleFinder().find(comment);
+                    if (title == null) throw new MojoExecutionException(
+                            "Todo has no title in file " + todo.getFile().getPath()
+                    );
+                    final String body = new BodyFinder().find(comment);
+                    if (body == null) throw new MojoExecutionException(
+                            "Todo has no body in file " + todo.getFile().getPath()
+                    );
+                    final String assignee = new AssigneeFinder().find(comment);
+                    final String milestone = new MilestoneFinder().find(comment);
+                    final String labels = new LabelsFinder().find(comment);
+                    issue.setTitle(title);
+                    issue.setBody(body);
+                    issue.setAssignee(assignee);
+                    if(labels!=null) {
+                        issue.setLabels(Arrays.asList(labels.split(",")));
+                    }
+                    issue.setMilestone(milestone);
+                    try {
+                        GithubIssueResponse response = new GithubConnector().createIssue(ConfigReader.getConfig(config), issue);
+                        issueCreated(response, todo);
+                    } catch (Exception e) {
+                        throw new MojoExecutionException(e.getMessage());
+                    }
                 }
             }
         }
 
+    }
+
+    private void removeClosed(List<Todo> todos) throws IOException {
+        List<GithubIssueResponse>issues=new GithubConnector().getIssues(ConfigReader.getConfig(config));
+        for(GithubIssueResponse issue: issues){
+            if(issue.getState().equals("closed")){
+                for (Todo todo:todos){
+                    for (String comment:todo.getComments()){
+                        if (comment.contains(String.format("[issue=#%s]",issue.getNumber()))) {
+                            BufferedReader file = new BufferedReader(new FileReader(todo.getFile()));
+                            String line;String input = "";
+
+                            while ((line = file.readLine()) != null) input += line + '\n';
+
+                            file.close();
+                            input = input.replace(
+                                    new JavaTodoFinder().findForClosed(
+                                            input,
+                                            String.valueOf(issue.getNumber())
+                                    ),
+                                    ""
+                            );
+                            FileOutputStream fileOut = new FileOutputStream(todo.getFile());
+                            fileOut.write(input.getBytes());
+                            fileOut.close();
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void issueCreated(GithubIssueResponse response, Todo todo) throws IOException {

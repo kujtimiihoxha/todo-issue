@@ -25,41 +25,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.maven.model;
-
-import java.io.File;
-import java.util.List;
+package com.kujtimhoxha.maven.logger;
 
 /**
- * Todo.
+ * Logger.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public class Todo {
-    
-    private File file;
-    
-    private List<String> comments;
-
-    public Todo(File file, List<String> comments) {
-        this.file=file;
-        this.comments=comments;
-    }
-
-    public File getFile() {
-        return file;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
-    }
-
-    public List<String> getComments() {
-        return comments;
-    }
-    public void setComments(List<String> comments) {
-        this.comments = comments;
-    }
+public class Logger {
 }

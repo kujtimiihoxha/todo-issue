@@ -65,7 +65,7 @@ public class JavaFileReader implements Reader {
         for(File file: accepted){
             String result=new JavaTodoFinder().find(content(file));
             if(result!=null) {
-                String[] comments =result.split("^\\?^");
+                String[] comments =result.split("\\*");
                 if (comments.length > 0) {
                     todos.add(new Todo(file, Arrays.asList(comments)));
                 }

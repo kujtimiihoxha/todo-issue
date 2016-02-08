@@ -109,6 +109,7 @@ public class Find extends AbstractMojo {
                   throw new MojoExecutionException(e.getMessage());
               }
             }
+
         } catch (IOException e) {
             throw new MojoExecutionException(
                     "Could not read config file, please add todo.json to the base directory"
