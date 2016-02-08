@@ -44,8 +44,7 @@ import java.io.IOException;
 public class ConfigReader {
     public static Configurations getConfig(String path) throws IOException {
         ObjectParser parser=new JsonObjectParser(new JacksonFactory());
-        BufferedReader br = null;
-        br = new BufferedReader(new FileReader(path));
+        BufferedReader br = new BufferedReader(new FileReader(path));
         return parser.parseAndClose(br,Configurations.class);
     }
 }

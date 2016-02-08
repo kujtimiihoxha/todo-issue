@@ -7,6 +7,7 @@ import com.kujtimhoxha.maven.config.ConfigReader;
 import com.kujtimhoxha.maven.model.GithubIssuePost;
 import com.kujtimhoxha.maven.model.GithubIssueResponse;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.*;
