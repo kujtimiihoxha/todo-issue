@@ -8,7 +8,7 @@
     <url>https://github.com/kujtimiihoxha/todo-issue</url>
     <connection>scm:git:git:https://github.com/kujtimiihoxha/todo-issue.git</connection>
     <developerConnection>scm:git:https://github.com/kujtimiihoxha/todo-issue.git</developerConnection>
-    <tag>0.1</tag>
+    <tag>todo-issue-plugin-0.1</tag>
   </scm>
   <distributionManagement>
     <snapshotRepository>
