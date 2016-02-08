@@ -45,9 +45,9 @@ Todo-issue is a plugin that lets you easily write github issues while you are co
  - ```project-id``` : if the git-server is Gitlab you must provide the project-id
  
 ### Contribute
-To help improve todo-issue clone this repo and submit pull requests with suggested changes.
-Add unit tests for new features added and/or missing tests.
-Please test your changes before sending a pull request by running :
-``` mvn clean install ```
+To help improve todo-issue clone this repo and submit pull requests with suggested changes.<br>
+Add unit tests for new features added and/or missing tests.<br>
+Please test your changes before sending a pull request by running :<br>
+``` mvn clean install ``` <br>
 ### Licence
 The todo-issue is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
