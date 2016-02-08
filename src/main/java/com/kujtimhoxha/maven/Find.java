@@ -27,6 +27,10 @@
  */
 package com.kujtimhoxha.maven;
 
+import com.kujtimhoxha.maven.config.ConfigReader;
+import com.kujtimhoxha.maven.filter.FileFilter;
+import com.kujtimhoxha.maven.filter.FolderFilter;
+import com.kujtimhoxha.maven.service.GithubClient;
 import com.kujtimhoxha.maven.validator.SourceValidator;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -34,7 +38,11 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Find.
@@ -44,6 +52,11 @@ import java.nio.file.Paths;
  */
 @Mojo(name = "find", defaultPhase = LifecyclePhase.PROCESS_SOURCES)
 public class Find extends AbstractMojo {
+
+    /**
+     * Files to search for todo's.
+     */
+    private final List<File> files=new ArrayList<File>();
 
     /**
      * Source directory.
@@ -85,6 +98,47 @@ public class Find extends AbstractMojo {
             throw new MojoExecutionException(
                 "Directory given does not exist or is wrong"
             );
+        }
+        addFiles(new File(Paths.get(base+this.source).toUri()));
+        try {
+            if(ConfigReader.getConfig(config).getGitServer().equals("Github")){
+              try{
+                  new GithubClient(files,types,config).run();
+              }
+              catch (MojoExecutionException e){
+                  throw new MojoExecutionException(e.getMessage());
+              }
+            }
+        } catch (IOException e) {
+            throw new MojoExecutionException(
+                    "Could not read config file, please add todo.json to the base directory"
+            );
+        }
+    }
+    public void addFiles(File directory) throws  MojoExecutionException{
+        final List<String> folders=new ArrayList<String>();
+        final List<String> files=new ArrayList<String>();
+        for(String file : excludes){
+            final File f=new File(file);
+            if(f.exists()) {
+                if (f.isDirectory()) {
+                    folders.add(file);
+                } else if (f.isFile()) {
+                    files.add(file);
+                }
+            }
+        }
+        File[] fList = directory.listFiles();
+        for (File file : fList != null ? fList : new File[0]) {
+            if (file.isFile()) {
+                if(new FileFilter(files).accept(file,file.getName())){
+                    this.files.add(file);
+                }
+            } else if (file.isDirectory()) {
+                if(new FolderFilter(folders).accept(file,file.getName())){
+                    addFiles(file);
+                }
+            }
         }
     }
 }

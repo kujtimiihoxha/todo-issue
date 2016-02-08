@@ -25,49 +25,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.maven.model;
+package com.kujtimhoxha.maven.model.gitlab;
 
 import com.google.api.client.util.Key;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * GithubIssuePost.
+ * GitLabUser.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public class GithubIssuePost {
-    @Key("title")
-    private String title;
-    @Key("body")
-    private String body;
-    @Key("assignee")
-    private String assignee;
-    @Key("milestone")
-    private Integer milestone;
-    @Key("labels")
-    private List<String> labels = new ArrayList<String>();
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public String getAssignee() {
-        return assignee;
-    }
-
-    public Integer getMilestone() {
-        return milestone;
-    }
-
-    public List<String> getLabels() {
-        return labels;
-    }
+public class GitLabUser {
+    @Key("state")
+    private String state;
+    @Key("web_url")
+    private String webUrl;
+    @Key("avatar_url")
+    private String avatarUrl;
+    @Key("username")
+    private String username;
+    @Key("id")
+    private int id;
+    @Key("name")
+    private String name;
 }

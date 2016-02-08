@@ -25,38 +25,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.maven.filter;
+package com.kujtimhoxha.maven.model.gitlab;
 
-import java.io.*;
-import java.nio.file.Paths;
-import java.util.List;
+import com.google.api.client.util.DateTime;
+import com.google.api.client.util.Key;
 
 /**
- * FolderFilter.
+ * GitLabIssueResponse.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public class FolderFilter implements FilenameFilter{
-    private final List<String> excludes;
-
-    public FolderFilter(final List<String> excludes) {
-        for(int i=0;i<excludes.size();i++) {
-            excludes.set(i,Paths.get(excludes.get(i)).toString()) ;
-        }
-        this.excludes = excludes;
-    }
-
-    public boolean accept(final File dir, final String name) {
-        if(dir.exists()){
-            for(String exc:this.excludes){
-                if(dir.getAbsolutePath().contains(exc)){
-                    return false;
-                }
-            }
-            return true;
-        }
-        return false;
-    }
+public class GitLabIssueResponse {
+    @Key("project_id")
+    private int projectId;
+    @Key("milestone")
+    private GitLabMilestone milestone;
+    @Key("author")
+    private GitLabUser author;
+    @Key("description")
+    private String description;
+    @Key("state")
+    private String state;
+    @Key("iid")
+    private int iid;
+    @Key("assignee")
+    private GitLabUser assignee;
+    @Key("labels")
+    private String[] labels;
+    @Key("id")
+    private int id;
+    @Key("title")
+    private String title;
+    @Key("updated_at")
+    private DateTime updatedAt;
+    @Key("created_at")
+    private DateTime createdAt;
 }

@@ -25,7 +25,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.maven.model;
+package com.kujtimhoxha.maven.model.github;
 
 import com.google.api.client.util.DateTime;
 import com.google.api.client.util.Key;

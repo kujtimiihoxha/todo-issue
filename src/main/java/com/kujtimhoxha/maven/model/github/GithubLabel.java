@@ -25,38 +25,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.maven.filter;
+package com.kujtimhoxha.maven.model.github;
 
-import java.io.*;
-import java.nio.file.Paths;
-import java.util.List;
+import com.google.api.client.util.Key;
 
 /**
- * FolderFilter.
+ * GithubLabel.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public class FolderFilter implements FilenameFilter{
-    private final List<String> excludes;
+public class GithubLabel {
+    @Key("url")
+    private String url;
+    @Key("name")
+    private String name;
+    @Key("color")
+    private String color;
 
-    public FolderFilter(final List<String> excludes) {
-        for(int i=0;i<excludes.size();i++) {
-            excludes.set(i,Paths.get(excludes.get(i)).toString()) ;
-        }
-        this.excludes = excludes;
+    public String getUrl() {
+        return url;
     }
 
-    public boolean accept(final File dir, final String name) {
-        if(dir.exists()){
-            for(String exc:this.excludes){
-                if(dir.getAbsolutePath().contains(exc)){
-                    return false;
-                }
-            }
-            return true;
-        }
-        return false;
+    public String getName() {
+        return name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    @Override
+    public String toString() {
+        return "GithubLabel{" +
+                "url='" + url + '\'' +
+                ", name='" + name + '\'' +
+                ", color='" + color + '\'' +
+                '}';
     }
 }

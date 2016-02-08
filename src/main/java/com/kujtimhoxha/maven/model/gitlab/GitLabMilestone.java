@@ -25,38 +25,71 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.maven.filter;
+package com.kujtimhoxha.maven.model.gitlab;
 
-import java.io.*;
-import java.nio.file.Paths;
-import java.util.List;
+import com.google.api.client.util.DateTime;
+import com.google.api.client.util.Key;
 
 /**
- * FolderFilter.
+ * GitLabMilestone.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public class FolderFilter implements FilenameFilter{
-    private final List<String> excludes;
+public class GitLabMilestone {
+    @Key("due_date")
+    private DateTime dueDate;
+    @Key("project_id")
+    private int projectId;
+    @Key("state")
+    private String state;
+    @Key("description")
+    private String description;
+    @Key("iid")
+    private  int iid;
+    @Key("id")
+    private int id;
+    @Key("title")
+    private String title;
+    @Key("created_at")
+    private DateTime createdAt;
+    @Key("updated_at")
+    private DateTime updatedAt;
 
-    public FolderFilter(final List<String> excludes) {
-        for(int i=0;i<excludes.size();i++) {
-            excludes.set(i,Paths.get(excludes.get(i)).toString()) ;
-        }
-        this.excludes = excludes;
+    public DateTime getDueDate() {
+        return dueDate;
     }
 
-    public boolean accept(final File dir, final String name) {
-        if(dir.exists()){
-            for(String exc:this.excludes){
-                if(dir.getAbsolutePath().contains(exc)){
-                    return false;
-                }
-            }
-            return true;
-        }
-        return false;
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getIid() {
+        return iid;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public DateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public DateTime getUpdatedAt() {
+        return updatedAt;
     }
 }

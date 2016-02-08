@@ -37,8 +37,8 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.JsonObjectParser;
 import com.kujtimhoxha.maven.base.Connector;
 import com.kujtimhoxha.maven.config.Configurations;
-import com.kujtimhoxha.maven.model.GithubIssuePost;
-import com.kujtimhoxha.maven.model.GithubIssueResponse;
+import com.kujtimhoxha.maven.model.github.GithubIssuePost;
+import com.kujtimhoxha.maven.model.github.GithubIssueResponse;
 import com.google.api.client.json.jackson2.JacksonFactory;
 
 import java.io.IOException;

@@ -49,7 +49,7 @@ public class MilestoneFinder implements Finder {
     public String find(String content) {
         Matcher matcher = PATTERN.matcher(content.replaceAll("\\n",""));
         if(matcher.find()){
-            return matcher.group(1).replaceAll("\\s","");
+            return matcher.group(1).replaceAll("\\s","").trim();
         }
         return null;
     }

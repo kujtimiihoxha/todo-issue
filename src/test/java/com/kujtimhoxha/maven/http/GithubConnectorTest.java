@@ -4,8 +4,8 @@ import com.google.api.client.json.JsonObjectParser;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.ObjectParser;
 import com.kujtimhoxha.maven.config.ConfigReader;
-import com.kujtimhoxha.maven.model.GithubIssuePost;
-import com.kujtimhoxha.maven.model.GithubIssueResponse;
+import com.kujtimhoxha.maven.model.github.GithubIssuePost;
+import com.kujtimhoxha.maven.model.github.GithubIssueResponse;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -28,9 +28,10 @@ public class GithubConnectorTest {
         List<GithubIssueResponse> issues=new GithubConnector().getIssues(
             ConfigReader.getConfig("/home/kujtimiihoxha/Projects/todo-issue/todo.json")
         );
-        Assert.assertTrue("Issue get not successful",issues.size()>0);
+        Assert.assertTrue("Issue get failed",issues.size()>0);
     }
     @Test
+    @Ignore
     public void testCreateIssue() throws IOException {
         ObjectParser objectParser=new JsonObjectParser(new JacksonFactory());
         GithubIssuePost post=objectParser.parseAndClose(

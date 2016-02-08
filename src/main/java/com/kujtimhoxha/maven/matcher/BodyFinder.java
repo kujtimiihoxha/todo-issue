@@ -50,7 +50,8 @@ public class BodyFinder implements Finder {
         final Matcher matcher = PATTERN.matcher(content.replaceAll("\\n","***"));
         if(matcher.find())
         {
-            return matcher.group(1).replaceAll("\\*\\*\\*","\n");
+            return matcher.group(1).replaceAll("^\\*\\*\\*+","")
+                   .replaceAll("\\*\\*\\*","\n").trim();
         }
         return null;
     }

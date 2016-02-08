@@ -25,41 +25,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.maven.model;
+package com.kujtimhoxha.maven.base;
 
-import com.google.api.client.util.DateTime;
-import com.google.api.client.util.Key;
+import com.kujtimhoxha.maven.model.Todo;
+import org.apache.maven.plugin.MojoExecutionException;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
 
 /**
- * GitLabIssueResponse.
+ * Reader.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public class GitLabIssueResponse {
-    @Key("project_id")
-    private int projectId;
-    @Key("milestone")
-    private GitLabMilestone milestone;
-    @Key("author")
-    private GitLabUser author;
-    @Key("description")
-    private String description;
-    @Key("state")
-    private String state;
-    @Key("iid")
-    private int iid;
-    @Key("assignee")
-    private GitLabUser assignee;
-    @Key("labels")
-    private String[] labels;
-    @Key("id")
-    private int id;
-    @Key("title")
-    private String title;
-    @Key("updated_at")
-    private DateTime updatedAt;
-    @Key("created_at")
-    private DateTime createdAt;
+public interface Reader {
+    List<Todo> todos() throws IOException;
 }

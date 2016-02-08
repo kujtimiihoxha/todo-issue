@@ -25,71 +25,69 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.maven.model;
+package com.kujtimhoxha.maven.model.github;
 
-import com.google.api.client.util.DateTime;
 import com.google.api.client.util.Key;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * GitLabMilestone.
+ * GithubIssuePost.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public class GitLabMilestone {
-    @Key("due_date")
-    private DateTime dueDate;
-    @Key("project_id")
-    private int projectId;
-    @Key("state")
-    private String state;
-    @Key("description")
-    private String description;
-    @Key("iid")
-    private  int iid;
-    @Key("id")
-    private int id;
+public class GithubIssuePost {
     @Key("title")
     private String title;
-    @Key("created_at")
-    private DateTime createdAt;
-    @Key("updated_at")
-    private DateTime updatedAt;
-
-    public DateTime getDueDate() {
-        return dueDate;
-    }
-
-    public int getProjectId() {
-        return projectId;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getIid() {
-        return iid;
-    }
-
-    public int getId() {
-        return id;
-    }
+    @Key("body")
+    private String body;
+    @Key("assignee")
+    private String assignee;
+    @Key("milestone")
+    private String milestone;
+    @Key("labels")
+    private List<String> labels = new ArrayList<String>();
 
     public String getTitle() {
         return title;
     }
 
-    public DateTime getCreatedAt() {
-        return createdAt;
+    public String getBody() {
+        return body;
     }
 
-    public DateTime getUpdatedAt() {
-        return updatedAt;
+    public String getAssignee() {
+        return assignee;
+    }
+
+    public String getMilestone() {
+        return milestone;
+    }
+
+    public List<String> getLabels() {
+        return labels;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public void setAssignee(String assignee) {
+        this.assignee = assignee;
+    }
+
+    public void setMilestone(String milestone) {
+        this.milestone = milestone;
+    }
+
+    public void setLabels(List<String> labels) {
+        this.labels = labels;
     }
 }

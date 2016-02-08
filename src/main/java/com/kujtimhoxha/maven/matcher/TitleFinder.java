@@ -49,7 +49,7 @@ public class TitleFinder implements Finder {
     public String find(String content) {
         final Matcher matcher = PATTERN.matcher(content.replaceAll("\\n",""));
         if(matcher.find()){
-            return matcher.group(1);
+            return matcher.group(1).replaceAll("^\\s+","").trim();
         }
         return null;
     }

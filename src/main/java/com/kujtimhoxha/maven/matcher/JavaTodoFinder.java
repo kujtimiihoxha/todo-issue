@@ -25,38 +25,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.maven.filter;
+package com.kujtimhoxha.maven.matcher;
 
-import java.io.*;
-import java.nio.file.Paths;
-import java.util.List;
+import com.kujtimhoxha.maven.base.Finder;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
- * FolderFilter.
+ * JavaTodoFinder.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public class FolderFilter implements FilenameFilter{
-    private final List<String> excludes;
+public class JavaTodoFinder implements Finder{
 
-    public FolderFilter(final List<String> excludes) {
-        for(int i=0;i<excludes.size();i++) {
-            excludes.set(i,Paths.get(excludes.get(i)).toString()) ;
-        }
-        this.excludes = excludes;
-    }
+    /**
+     * Pattern for Body in comment.
+     */
+    private static final Pattern PATTERN = Pattern.compile("/\\**(.*?)\\*/");
 
-    public boolean accept(final File dir, final String name) {
-        if(dir.exists()){
-            for(String exc:this.excludes){
-                if(dir.getAbsolutePath().contains(exc)){
-                    return false;
+    @Override
+    public String find(String content) {
+        final Matcher matcher = PATTERN.matcher(content.replaceAll("\\n","----"));
+        int matches=0;
+        StringBuilder response = new StringBuilder("");
+        while (matcher.find())
+        {
+            if(matcher.group(1).toLowerCase().contains("[todo]")&&
+                    !matcher.group(1).toLowerCase().contains("[issue=")) {
+                if (matches == 0) {
+                    response.append(matcher.group(1).replaceAll("\\* ", "")
+                            .replaceAll("----", "\n").replaceAll("\\*", ""));
+                } else {
+                    response.append("^?^").append(matcher.group(1).replaceAll("\\* ", "")
+                            .replaceAll("----", "\n").replaceAll("\\*", ""));
                 }
+                matches++;
             }
-            return true;
         }
-        return false;
+        if(response.toString().isEmpty())
+            return null;
+        return response.toString();
     }
 }

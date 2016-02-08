@@ -25,43 +25,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.maven.model;
+package com.kujtimhoxha.maven.model.github;
 
 import com.google.api.client.util.Key;
 
 /**
- * GithubLabel.
+ * GithubPullRequest.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public class GithubLabel {
+public class GithubPullRequest {
     @Key("url")
     private String url;
-    @Key("name")
-    private String name;
-    @Key("color")
-    private String color;
+    @Key("html_url")
+    private String htmlUrl;
+    @Key("diff_url")
+    private String diffUrl;
+    @Key("patch_url")
+    private String patchUrl;
 
     public String getUrl() {
         return url;
     }
 
-    public String getName() {
-        return name;
+    public String getHtmlUrl() {
+        return htmlUrl;
     }
 
-    public String getColor() {
-        return color;
+    public String getDiffUrl() {
+        return diffUrl;
+    }
+
+    public String getPatchUrl() {
+        return patchUrl;
     }
 
     @Override
     public String toString() {
-        return "GithubLabel{" +
+        return "GithubPullRequest{" +
                 "url='" + url + '\'' +
-                ", name='" + name + '\'' +
-                ", color='" + color + '\'' +
+                ", htmlUrl='" + htmlUrl + '\'' +
+                ", diffUrl='" + diffUrl + '\'' +
+                ", patchUrl='" + patchUrl + '\'' +
                 '}';
     }
 }
