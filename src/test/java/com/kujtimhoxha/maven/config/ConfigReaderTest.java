@@ -23,7 +23,7 @@ public class ConfigReaderTest {
                 "Config file read was successful",
                 "Github",
                 ConfigReader.getConfig(
-                        System.getProperty("user.dir")+"/todo.json"
+                    System.getProperty("user.dir")+"/todo.json"
                 ).getGitServer()
         );
     }
