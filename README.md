@@ -131,9 +131,9 @@ task find(){
 The ```gradleAdapter()``` method accepts four parameters 
 
 - source : String - Source directory **required**
-- excludes : String[] - Array of excluded directories or files (default : no file/folder is excluded )
-- types : String[] - Array of file types to read from (default : ".java")
-- config : String[] - Configuration file path (default : "{user.dir}/todo.json")
+- excludes : String[]/null - Array of excluded directories or files (default : no file/folder is excluded )
+- types : String[]/null - Array of file types to read from (default : ".java")
+- config : String/null - Configuration file path (default : "{user.dir}/todo.json")
 To run the task simply run 
 ```
 gradle task:find
