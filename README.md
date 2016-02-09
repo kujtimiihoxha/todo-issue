@@ -133,6 +133,11 @@ The ```gradleAdapter()``` method accepts four parameters
 - excludes : String[] - Array of excluded directories or files 
 - types : String[] - Array of file types to read from (default ".java")
 - config : String[] - Configuration file path (default "{user.dir}/todo.json")
+To run the task simply run 
+```
+gradle task:find
+```
+
 ### Contribute
 
 To help improve todo-issue clone this repo and submit pull requests with suggested changes.<br>
