@@ -2,7 +2,7 @@ Maven plugin to convert TODO-s to Github/Gitlab issues. [![Build Status](https:/
 ------------------------------------------------------
 ### About
 Todo-issue is a plugin that lets you easily write github issues while you are coding.This plugin enables the user to add comments in the source code that will be translated to github issues.This will help the developing team to keep track of the bugs and tasks assigned to specific users.
-#### Se it in action
+#### See it in action
 To se a demo project clone [this](https://github.com/kujtimiihoxha/testing-todo-issue) repository and follow the instructions.
 ### Syntax
  
