@@ -1,8 +1,9 @@
 Maven plugin to convert TODO-s to Github/Gitlab issues. [![Build Status](https://travis-ci.org/kujtimiihoxha/todo-issue.svg?branch=master)](https://travis-ci.org/kujtimiihoxha/todo-issue)
 ------------------------------------------------------
 ### About
-Todo-issue is a plugin that lets you easily write github issues while you are coding.<br>This plugin enables the user to add comments in the source code that will be translated to github issues.<br>This will help the developing team to keep track of the bugs and tasks assigned to specific users.
-
+Todo-issue is a plugin that lets you easily write github issues while you are coding.This plugin enables the user to add comments in the source code that will be translated to github issues.This will help the developing team to keep track of the bugs and tasks assigned to specific users.
+#### Se it in action
+To se a demo project clone [this](https://github.com/kujtimiihoxha/testing-todo-issue) repository and follow the instructions.
 ### Syntax
  
      /**
@@ -32,7 +33,8 @@ Todo-issue is a plugin that lets you easily write github issues while you are co
  - ```/`{milestone}/``` : milestone.
 
 ### todo.json
-Before you run the ```find``` goal you must add the file todo.json to the base directory(where the pom.xml is).<p>
+Before you can run the ```find``` goal you must add the file todo.json to the base directory(where the pom.xml is).
+Remember to add todo.json to the .gitignore file because it contains your access token.
 ```json
 {
   "git-server":"Github",
