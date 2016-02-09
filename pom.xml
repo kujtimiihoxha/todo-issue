@@ -38,25 +38,6 @@
           <target>1.6</target>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>com.kujtimhoxha.plugins</groupId>
-        <artifactId>todo-issue-plugin</artifactId>
-        <configuration>
-          <source>/src</source>
-          <excludes>
-            <exclude>${basedir}/src/test</exclude>
-          </excludes>
-          <config>${basedir}/todo-issue.json</config>
-        </configuration>
-        <version>0.2</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>find</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
 
