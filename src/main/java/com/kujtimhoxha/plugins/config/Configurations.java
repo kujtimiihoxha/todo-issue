@@ -39,6 +39,8 @@ import com.google.api.client.util.Key;
 public class Configurations {
     @Key("git-server")
     private String gitServer;
+    @Key("gitlab-url")
+    private String gitlabUrl;
     @Key("type")
     private String type;
     @Key("repository-username")
@@ -55,6 +57,10 @@ public class Configurations {
 
     public String getGitServer() {
         return gitServer;
+    }
+
+    public String getGitlabUrl() {
+        return gitlabUrl;
     }
 
     public String getType() {

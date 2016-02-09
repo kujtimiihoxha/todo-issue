@@ -38,6 +38,7 @@ Remember to add todo.json to the .gitignore file because it contains your access
 ```json
 {
   "git-server":"Github",
+  "gitlab-url":"https://gitlab.com/",
   "type":"user",
   "repository-username":"kujtimiihoxha",
   "issuer-username":"kujtimiihoxha",
@@ -49,7 +50,8 @@ Remember to add todo.json to the .gitignore file because it contains your access
 ```
 
  - ```git-server``` : can be "Github" or "Gitlab".
- - ```type``` : if using Gitlab can be "org" or "user".
+ - ```gitlab-url``` : if you are using "Gitlab" you must provide the gitlab server url.
+ - ```type``` : if you are using Gitlab can be "org" or "user".
  - ```repository-username``` : the repository user.
  - ```issuer-username``` : the user who is writing the issues.
  - ```token``` : the user access token.
