@@ -108,6 +108,14 @@ public class Find extends AbstractMojo {
                   throw new MojoExecutionException(e.getMessage());
               }
             }
+            /**
+             * [todo] $Add support for Gitlab [issue=#28]$
+             * #/
+             * At this point there is no support for Gitlab, support must be added ASAP
+             * #/
+             * ~kujtimiihoxha~
+             * %development,urgent%
+             */
 
         } catch (IOException e) {
             throw new MojoExecutionException(
@@ -146,5 +154,19 @@ public class Find extends AbstractMojo {
                 }
             }
         }
+    }
+
+    /**
+     * Gradle Adapter will be used for gradle tasks.
+     */
+    public void gradleAdapter(String source,String[] excludes,String[] types, String config){
+        this.base=System.getProperty("user.dir");
+        this.source=source;
+        if(excludes==null) this.excludes=new String[0];
+        else this.excludes=excludes;
+        if(types==null) this.types= new String[]{".java"};
+        else this.types=types;
+        if(config==null) this.config= this.base+"/todo.json";
+        else this.config=config;
     }
 }

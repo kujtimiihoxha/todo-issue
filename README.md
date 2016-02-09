@@ -65,7 +65,7 @@ Remember to add todo.json to the .gitignore file because it contains your access
             <plugin>
                 <groupId>com.kujtimhoxha.plugins</groupId>
                 <artifactId>todo-issue-plugin</artifactId>
-                <version>0.2</version>
+                <version>0.3</version>
                 <configuration>
                     <source>/src/main</source>
                 </configuration>
@@ -89,7 +89,7 @@ Remember to add todo.json to the .gitignore file because it contains your access
         <dependency>
             <groupId>com.kujtimhoxha.plugins</groupId>
             <artifactId>todo-issue-plugin</artifactId>
-            <version>0.2</version>
+            <version>0.3</version>
         </dependency>
     </dependencies>
 ```
@@ -99,7 +99,40 @@ Remember to add todo.json to the .gitignore file because it contains your access
 mvn clean com.kujtimhoxha.plugins:todo-issue-plugin:find -Dsource={source-root-path} -Dexcludes={excluded-path-one},{excluded-path-two}
 ```
 - To add a different ```todo.json``` add ``` -Dconfig={new-config-path}```.
+### Using with gradle
+To use todo-issue with gradle we need to add todo-issue to the dependencies
+- Add to buildscript
+```
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath "com.kujtimhoxha.plugins:todo-issue-plugin:0.3"
+    }
+}
+```
+- Add dependency to the project
+```
+dependencies {
+    compile "com.kujtimhoxha.plugins:todo-issue-plugin:0.3"
+}
+```
+- Add a task called find
+```
+task find(){
+    def todo= new  com.kujtimhoxha.plugins.Find();
+    todo.gradleAdapter("/src",null,null,null)
+    todo.execute();
+}
+```
 
+The ```gradleAdapter()``` method accepts four parameters 
+
+- source : String - Source directory **required**
+- excludes : String[] - Array of excluded directories or files 
+- types : String[] - Array of file types to read from (default ".java")
+- config : String[] - Configuration file path (default "{user.dir}/todo.json")
 ### Contribute
 
 To help improve todo-issue clone this repo and submit pull requests with suggested changes.<br>
