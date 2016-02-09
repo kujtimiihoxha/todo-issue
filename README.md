@@ -137,6 +137,7 @@ To run the task simply run
 ```
 gradle task:find
 ```
+For a demo project with gradle see [this](https://github.com/kujtimiihoxha/gradle-todo-issue) repository.
 
 ### Contribute
 
