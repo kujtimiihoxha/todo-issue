@@ -55,6 +55,7 @@ Before you run the ```find``` goal you must add the file todo.json to the base d
  - ```project-id``` : if the git-server is Gitlab you must provide the project-id
  
 ### Usage
+- First add a properly formatted todo.json file to your base directory.
 - To execute ```find``` goal add the plugin to your build tag
 ```xml
     <build>
