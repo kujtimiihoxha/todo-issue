@@ -115,6 +115,12 @@ public class Find extends AbstractMojo {
             );
         }
     }
+
+    /**
+     * Adds files from directory and subdirectories if they are not excluded.
+     * @param directory source directory.
+     * @throws MojoExecutionException
+     */
     public void addFiles(File directory) throws  MojoExecutionException{
         final List<String> folders=new ArrayList<String>();
         final List<String> files=new ArrayList<String>();

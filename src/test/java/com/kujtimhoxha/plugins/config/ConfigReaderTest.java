@@ -27,10 +27,10 @@ public class ConfigReaderTest {
                 ).getGitServer()
         );
     }
+
     /**
      * Throws exception if path not right
      */
-
     @Test(expected = IOException.class)
     public void testErrorIfPathNotRight() throws IOException {
         ConfigReader.getConfig(
