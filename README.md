@@ -99,6 +99,7 @@ Remember to add todo.json to the .gitignore file because it contains your access
 mvn clean com.kujtimhoxha.plugins:todo-issue-plugin:find -Dsource={source-root-path} -Dexcludes={excluded-path-one},{excluded-path-two}
 ```
 - To add a different ```todo.json``` add ``` -Dconfig={new-config-path}```.
+
 ### Using with gradle
 To use todo-issue with gradle we need to add todo-issue to the dependencies
 - Add to buildscript
