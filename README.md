@@ -55,10 +55,40 @@ Before you run the ```find``` goal you must add the file todo.json to the base d
  - ```project-id``` : if the git-server is Gitlab you must provide the project-id
  
 ### Usage
-
-- To execute find goal run:<br>
+- To execute ```find``` goal add the plugin to your build tag
+```xml
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.kujtimhoxha.plugins</groupId>
+                <artifactId>todo-issue-plugin</artifactId>
+                <version>0.2</version>
+                <configuration>
+                    <source>/src/main</source>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>find</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+```
+- To execute find goal from command line add the plugin to the dependencies of your project and run:<br>
 ```bash 
     mvn clean com.kujtimhoxha.plugins:todo-issue-plugin:find -Dsource={source-root-path}
+```
+```xml
+    <dependencies>
+        <dependency>
+            <groupId>com.kujtimhoxha.plugins</groupId>
+            <artifactId>todo-issue-plugin</artifactId>
+            <version>0.2</version>
+        </dependency>
+    </dependencies>
 ```
 - -Dsource : sets the source root **required** 
 - To exclude files/folders add ```-Dexcludes```:<br>
