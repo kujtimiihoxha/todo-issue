@@ -22,7 +22,7 @@ To se a demo project clone [this](https://github.com/kujtimiihoxha/testing-todo-
       * #/
       * ~kujtimiihoxha~
       * %bug,enhancement,any,label%
-      * /`1.0.1/`
+      * /`1/`
       */
  
  - ```[todo] ```: every todo that will be an issue must start with this tag. **required**
@@ -30,7 +30,7 @@ To se a demo project clone [this](https://github.com/kujtimiihoxha/testing-todo-
  - ```#/{body}#/``` : will be the body of the issue. **required**
  - ```~{assignee}~``` : issue assigned to.
  - ```%{label,label1,label2}%``` : labels of the issue separated by commas. 
- - ```/`{milestone}/``` : milestone.
+ - ```/`{milestone}/``` : milestone number.
 
 ### todo.json
 Before you can run the ```find``` goal you must add the file todo.json to the base directory(where the pom.xml is).
