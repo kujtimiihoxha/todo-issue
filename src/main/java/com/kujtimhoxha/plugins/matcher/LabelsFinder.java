@@ -44,7 +44,7 @@ public class LabelsFinder implements Finder {
     /**
      * Pattern for Labels in comment.
      */
-    private static final Pattern PATTERN = Pattern.compile("%(.*?)%");
+    private static final Pattern PATTERN = Pattern.compile("\\[l](.*?)\\[l]");
 
     public String find(String content) {
         Matcher matcher = PATTERN.matcher(content.replaceAll("\\n",""));

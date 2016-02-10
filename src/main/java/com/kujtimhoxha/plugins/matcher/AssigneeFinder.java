@@ -44,7 +44,7 @@ public class AssigneeFinder implements Finder {
     /**
      * Pattern for Assignee in comment.
      */
-    private static final Pattern PATTERN = Pattern.compile("~(.*?)~");
+    private static final Pattern PATTERN = Pattern.compile("\\[@](.*?)\\[@]");
 
     public String find(String content) {
         Matcher matcher = PATTERN.matcher(content.replaceAll("\\n",""));

@@ -44,7 +44,7 @@ public class BodyFinder implements Finder {
     /**
      * Pattern for Body in comment.
      */
-    private static final Pattern PATTERN = Pattern.compile("#/(.*?)#/");
+    private static final Pattern PATTERN = Pattern.compile("\\[b](.*?)\\[b]");
 
     public String find(String content) {
         final Matcher matcher = PATTERN.matcher(content.replaceAll("\\n","***"));

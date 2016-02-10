@@ -44,7 +44,7 @@ public class TitleFinder implements Finder {
     /**
      * Pattern for Title in comment.
      */
-    private static final Pattern PATTERN = Pattern.compile("\\$(.*?)\\$");
+    private static final Pattern PATTERN = Pattern.compile("\\[t](.*?)\\[t]");
 
     public String find(String content) {
         final Matcher matcher = PATTERN.matcher(content.replaceAll("\\n",""));

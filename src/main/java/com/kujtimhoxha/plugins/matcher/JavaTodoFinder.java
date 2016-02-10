@@ -44,7 +44,7 @@ public class JavaTodoFinder implements Finder{
     /**
      * Pattern for Body in comment.
      */
-    private static final Pattern PATTERN = Pattern.compile("/\\**(.*?)\\*/");
+    private static final Pattern PATTERN = Pattern.compile("\\[todo](.*?)\\[todo]");
 
     @Override
     public String find(String content) {
@@ -53,16 +53,12 @@ public class JavaTodoFinder implements Finder{
         StringBuilder response = new StringBuilder("");
         while (matcher.find())
         {
-            if(matcher.group(1).toLowerCase().contains("[todo]")) {
-                if (matches == 0) {
-                    response.append(matcher.group(1).replaceAll("\\* ", "")
-                            .replaceAll("----", "\n").replaceAll("\\*", ""));
-                } else {
-                    response.append("*").append(matcher.group(1).replaceAll("\\* ", "")
-                            .replaceAll("----", "\n").replaceAll("\\*", ""));
-                }
-                matches++;
+            if (matches == 0) {
+                response.append(matcher.group(1).replaceAll("----", "\n"));
+            } else {
+                response.append("[td]").append(matcher.group(1).replaceAll("----", "\n"));
             }
+            matches++;
         }
         if(response.toString().isEmpty())
             return null;
@@ -70,18 +66,11 @@ public class JavaTodoFinder implements Finder{
     }
     public String findForClosed(String content,String id) {
         final Matcher matcher = PATTERN.matcher(content.replaceAll("\\n","----"));
-        int matches=0;
         StringBuilder response = new StringBuilder("");
         while (matcher.find())
         {
-            if(matcher.group(1).toLowerCase().contains("[todo]") &&
-                    matcher.group(1).toLowerCase().contains(String.format("[issue=#%s]",id))) {
-                if (matches == 0) {
-                    response.append(matcher.group(0).replaceAll("----", "\n"));
-                } else {
-                    response.append("^?^").append(matcher.group(0).replaceAll("----", "\n"));
-                }
-                matches++;
+            if(matcher.group(1).toLowerCase().contains(String.format("[issue=#%s]",id))) {
+                response.append(matcher.group(0).replaceAll("----", "\n"));
             }
         }
         if(response.toString().isEmpty())

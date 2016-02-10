@@ -58,6 +58,20 @@ public class Find extends AbstractMojo {
      * Files to search for todo's.
      */
     private final List<File> files=new ArrayList<File>();
+    //
+    //@issue
+    //title : My title
+    //body :|
+    //My body goes here
+    //
+    //
+    //
+    //
+    //assignee : kujtimiihoxha
+    //labels : label,label,label
+    //milestone : 1
+    //@end
+
 
     /**
      * Source directory.
