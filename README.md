@@ -42,7 +42,7 @@ Remember to add todo.json to the .gitignore file because it contains your access
   "repository-username":"kujtimiihoxha",
   "issuer-username":"kujtimiihoxha",
   "token":"token",
-  "repository":"todo-issue",
+  "repository":"todo-issue"
 }
 
 ```
