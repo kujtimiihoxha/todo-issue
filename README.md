@@ -140,6 +140,14 @@ To run the task simply run
 ```
 gradle task:find
 ```
+
+To run ```find``` task every build just add it to the build dependencies 
+```
+build{
+    dependsOn find
+}
+```
+
 For a demo project with gradle see [this](https://github.com/kujtimiihoxha/gradle-todo-issue) repository.
 
 ### Contribute
