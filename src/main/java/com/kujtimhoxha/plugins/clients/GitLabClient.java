@@ -29,12 +29,16 @@ package com.kujtimhoxha.plugins.clients;
 
 import com.kujtimhoxha.plugins.base.Service;
 import com.kujtimhoxha.plugins.config.ConfigReader;
+import com.kujtimhoxha.plugins.config.Configurations;
 import com.kujtimhoxha.plugins.http.GithubConnector;
+import com.kujtimhoxha.plugins.http.GitlabConnector;
 import com.kujtimhoxha.plugins.logger.Log;
 import com.kujtimhoxha.plugins.matcher.*;
 import com.kujtimhoxha.plugins.model.Todo;
 import com.kujtimhoxha.plugins.model.github.GithubIssuePost;
 import com.kujtimhoxha.plugins.model.github.GithubIssueResponse;
+import com.kujtimhoxha.plugins.model.gitlab.GitLabIssueResponse;
+import com.kujtimhoxha.plugins.model.gitlab.GitlabIssuePost;
 import com.kujtimhoxha.plugins.reader.JavaFileReader;
 import org.apache.maven.plugin.MojoExecutionException;
 
@@ -44,13 +48,13 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * GithubClient.
+ * GitLabClient.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public class GithubClient implements Service{
+public class GitLabClient implements Service{
     /**
      * File types to search for todo's.
      */
@@ -65,7 +69,7 @@ public class GithubClient implements Service{
      */
     private String config;
 
-    public GithubClient(List<File> files, String[] types, String config) {
+    public GitLabClient(List<File> files, String[] types, String config) {
         this.files=files;
         this.types = types;
         this.config = config;
@@ -82,12 +86,12 @@ public class GithubClient implements Service{
         for (Todo todo:todos) {
             for (String comment:todo.getComments()) {
                 if (!comment.contains("[issue=")) {
-
-                    final GithubIssuePost issue = new GithubIssuePost();
+                    final GitlabIssuePost issue = new GitlabIssuePost();
                     final String title = new TitleFinder().find(comment);
                     if (title == null) throw new MojoExecutionException(
                             "Todo has no title in file " + todo.getFile().getPath()
                     );
+
                     final String body = new BodyFinder().find(comment);
                     if (body == null) throw new MojoExecutionException(
                             "Todo has no body in file " + todo.getFile().getPath()
@@ -97,26 +101,26 @@ public class GithubClient implements Service{
                     final String labels = new LabelsFinder().find(comment);
                     issue.setTitle(title);
                     final StringBuilder builder=new StringBuilder(body);
+                    final Configurations configurations= ConfigReader.getConfig(config);
                     builder.append("\n").append("\n").append("\n").append(
                             String.format("```todo-issue``` File : [%s](%s)\n",
                             todo.getFile().getName(),
-                            "https://github.com/"+
-                                    ConfigReader.getConfig(config).getRepositoryUsername()+
-                                    "/"+ConfigReader.getConfig(config).getRepository()+
+                                    configurations.getGitlabUrl()+
+                                            "/"+
+                                            configurations.getRepositoryUsername()+
+                                    "/"+configurations.getRepository()+
                                     "/tree/master"+todo.getFile().getPath().replace(
                                     System.getProperty("user.dir"),""))
                     );
-                    issue.setBody(builder.toString());
-                    issue.setAssignee(assignee);
-                    if(labels!=null) {
-                        issue.setLabels(Arrays.asList(labels.split(",")));
-                    }
-                    issue.setMilestone(Integer.parseInt(milestone));
+                    issue.setDescription(builder.toString());
+                    if(assignee!=null)issue.setAssigneeId(new GitlabConnector().getUser(configurations,assignee).getId());
+                    issue.setLabels(labels);
+                    if(milestone!=null)issue.setMilestoneId(new GitlabConnector().getMilestone(configurations,milestone).getId());
                     Log.getLog().info("Issue  with title `"+title+"` will be created");
                     try {
-                        GithubIssueResponse response = new GithubConnector().createIssue(ConfigReader.getConfig(config), issue);
+                        GitLabIssueResponse response = new GitlabConnector().createIssue(configurations, issue);
                         issueCreated(response, todo);
-                        Log.getLog().info("Issue created with id #"+response.getNumber());
+                        Log.getLog().info("Issue created with id #"+response.getId());
                     } catch (Exception e) {
                         throw new MojoExecutionException(e.getMessage());
                     }
@@ -127,13 +131,13 @@ public class GithubClient implements Service{
     }
 
     private void removeClosed(List<Todo> todos) throws IOException {
-        List<GithubIssueResponse>issues=new GithubConnector().getIssues(ConfigReader.getConfig(config));
-        for(GithubIssueResponse issue: issues){
+        List<GitLabIssueResponse>issues=new GitlabConnector().getIssues(ConfigReader.getConfig(config));
+        for(GitLabIssueResponse issue: issues){
             if(issue.getState().equals("closed")){
                 for (Todo todo:todos){
                     for (String comment:todo.getComments()){
-                        if (comment.contains(String.format("[issue=#%s]",issue.getNumber()))) {
-                            Log.getLog().info("TODO with issue id #"+issue.getNumber()+" is closed and will be deleted");
+                        if (comment.contains(String.format("[issue=#%s]",issue.getId()))) {
+                            Log.getLog().info("TODO with issue id #"+issue.getId()+" is closed and will be deleted");
                             BufferedReader file = new BufferedReader(new FileReader(todo.getFile()));
                             String line;String input = "";
 
@@ -143,7 +147,7 @@ public class GithubClient implements Service{
                             input = input.replace(
                                     new JavaTodoFinder().findForClosed(
                                             input,
-                                            String.valueOf(issue.getNumber())
+                                            String.valueOf(issue.getId())
                                     ),
                                     ""
                             );
@@ -157,7 +161,7 @@ public class GithubClient implements Service{
         }
     }
 
-    public void issueCreated(GithubIssueResponse response, Todo todo) throws IOException {
+    public void issueCreated(GitLabIssueResponse response, Todo todo) throws IOException {
         BufferedReader file = new BufferedReader(new FileReader(todo.getFile()));
         String line;String input = "";
 
@@ -168,7 +172,7 @@ public class GithubClient implements Service{
                 response.getTitle(),
                 String.format(
                         "%s [issue=#%s]",
-                        response.getTitle(),response.getNumber()
+                        response.getTitle(),response.getId()
                 )
         );
         FileOutputStream fileOut = new FileOutputStream(todo.getFile());

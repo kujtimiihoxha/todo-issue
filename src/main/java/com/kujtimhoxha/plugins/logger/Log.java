@@ -25,52 +25,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.plugins.model.gitlab;
+package com.kujtimhoxha.plugins.logger;
 
-import com.google.api.client.util.Key;
+import org.apache.maven.plugin.logging.SystemStreamLog;
 
 /**
- * GitLabUser.
+ * Log.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public class GitLabUser {
-    @Key("state")
-    private String state;
-    @Key("web_url")
-    private String webUrl;
-    @Key("avatar_url")
-    private String avatarUrl;
-    @Key("username")
-    private String username;
-    @Key("id")
-    private Integer id;
-    @Key("name")
-    private String name;
-
-    public String getState() {
-        return state;
-    }
-
-    public String getWebUrl() {
-        return webUrl;
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
+public final class Log extends SystemStreamLog{
+    private static final Log logger=new Log();
+    public static Log getLog(){
+        return logger;
     }
 }

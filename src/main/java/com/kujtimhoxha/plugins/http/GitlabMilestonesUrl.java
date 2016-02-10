@@ -25,52 +25,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kujtimhoxha.plugins.model.gitlab;
+package com.kujtimhoxha.plugins.http;
 
-import com.google.api.client.util.Key;
+import com.google.api.client.http.GenericUrl;
 
 /**
- * GitLabUser.
+ * GitlabMilestonesUrl.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public class GitLabUser {
-    @Key("state")
-    private String state;
-    @Key("web_url")
-    private String webUrl;
-    @Key("avatar_url")
-    private String avatarUrl;
-    @Key("username")
-    private String username;
-    @Key("id")
-    private Integer id;
-    @Key("name")
-    private String name;
-
-    public String getState() {
-        return state;
-    }
-
-    public String getWebUrl() {
-        return webUrl;
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
+public class GitlabMilestonesUrl extends GenericUrl {
+    public GitlabMilestonesUrl(String gitlabUrl, String repository, String user) {
+        super(String.format("%s/api/v3/projects/%s%s/milestones", gitlabUrl, user, "%2F" + repository));
     }
 }

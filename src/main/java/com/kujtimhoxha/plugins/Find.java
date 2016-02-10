@@ -27,6 +27,7 @@
  */
 package com.kujtimhoxha.plugins;
 
+import com.kujtimhoxha.plugins.clients.GitLabClient;
 import com.kujtimhoxha.plugins.config.ConfigReader;
 import com.kujtimhoxha.plugins.filter.FileFilter;
 import com.kujtimhoxha.plugins.filter.FolderFilter;
@@ -34,6 +35,7 @@ import com.kujtimhoxha.plugins.clients.GithubClient;
 import com.kujtimhoxha.plugins.validator.SourceValidator;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
@@ -93,6 +95,8 @@ public class Find extends AbstractMojo {
      *  in executing the goal
      */
     public void execute() throws MojoExecutionException {
+        
+        setLog(com.kujtimhoxha.plugins.logger.Log.getLog());
         if (!new SourceValidator().validate(Paths.get(base+this.source).toString())) {
             throw new MojoExecutionException(
                 "Directory given does not exist or is wrong"
@@ -101,6 +105,7 @@ public class Find extends AbstractMojo {
         addFiles(new File(Paths.get(base+this.source).toUri()));
         try {
             if(ConfigReader.getConfig(config).getGitServer().equals("Github")){
+                getLog().info("Project uses  Github");
               try{
                   new GithubClient(files,types,config).run();
               }
@@ -108,14 +113,15 @@ public class Find extends AbstractMojo {
                   throw new MojoExecutionException(e.getMessage());
               }
             }
-            /**
-             * [todo] $Add support for Gitlab [issue=#28]$
-             * #/
-             * At this point there is no support for Gitlab, support must be added ASAP
-             * #/
-             * ~kujtimiihoxha~
-             * %development,urgent%
-             */
+            else if((ConfigReader.getConfig(config).getGitServer().equals("Gitlab"))){
+                getLog().info("Project uses  Gitlab");
+                try{
+                    new GitLabClient(files,types,config).run();
+                }
+                catch (MojoExecutionException e){
+                    throw new MojoExecutionException(e.getMessage());
+                }
+            }
 
         } catch (IOException e) {
             throw new MojoExecutionException(

@@ -1,10 +1,8 @@
 {
   "git-server":"Github",
   "gitlab-url":"https://gitlab.com/",
-  "type":"user",
   "repository-username":"kujtimiihoxha",
   "issuer-username":"kujtimiihoxha",
   "token":"token",
-  "repository":"todo-issue",
-  "project-id":"0"
+  "repository":"todo-issue"
 }

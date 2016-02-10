@@ -39,24 +39,20 @@ Remember to add todo.json to the .gitignore file because it contains your access
 {
   "git-server":"Github",
   "gitlab-url":"https://gitlab.com/",
-  "type":"user",
   "repository-username":"kujtimiihoxha",
   "issuer-username":"kujtimiihoxha",
   "token":"token",
   "repository":"todo-issue",
-  "project-id":"0"
 }
 
 ```
 
  - ```git-server``` : can be "Github" or "Gitlab".
  - ```gitlab-url``` : if you are using "Gitlab" you must provide the gitlab server url.
- - ```type``` : if you are using Gitlab can be "org" or "user".
  - ```repository-username``` : the repository user.
  - ```issuer-username``` : the user who is writing the issues.
  - ```token``` : the user access token.
  - ```repository``` : the repository to post issues to .
- - ```project-id``` : if the git-server is Gitlab you must provide the project-id
  
 ### Usage
 - First add a properly formatted todo.json file to your base directory.
@@ -67,7 +63,7 @@ Remember to add todo.json to the .gitignore file because it contains your access
             <plugin>
                 <groupId>com.kujtimhoxha.plugins</groupId>
                 <artifactId>todo-issue-plugin</artifactId>
-                <version>0.3</version>
+                <version>0.4</version>
                 <configuration>
                     <source>/src/main</source>
                 </configuration>
@@ -91,7 +87,7 @@ Remember to add todo.json to the .gitignore file because it contains your access
         <dependency>
             <groupId>com.kujtimhoxha.plugins</groupId>
             <artifactId>todo-issue-plugin</artifactId>
-            <version>0.3</version>
+            <version>0.4</version>
         </dependency>
     </dependencies>
 ```
@@ -118,7 +114,7 @@ buildscript {
 - Add dependency to the project
 ```
 dependencies {
-    compile "com.kujtimhoxha.plugins:todo-issue-plugin:0.3"
+    compile "com.kujtimhoxha.plugins:todo-issue-plugin:0.4"
 }
 ```
 - Add a task called find

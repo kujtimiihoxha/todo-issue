@@ -29,48 +29,74 @@ package com.kujtimhoxha.plugins.model.gitlab;
 
 import com.google.api.client.util.Key;
 
+import java.util.ArrayList;
+
 /**
- * GitLabUser.
+ * GitlabIssuePost.
  *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-public class GitLabUser {
-    @Key("state")
-    private String state;
-    @Key("web_url")
-    private String webUrl;
-    @Key("avatar_url")
-    private String avatarUrl;
-    @Key("username")
-    private String username;
+public class GitlabIssuePost {
     @Key("id")
     private Integer id;
-    @Key("name")
-    private String name;
-
-    public String getState() {
-        return state;
-    }
-
-    public String getWebUrl() {
-        return webUrl;
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public String getUsername() {
-        return username;
-    }
+    @Key("title")
+    private String title;
+    @Key("description")
+    private String description;
+    @Key("assignee_id")
+    private Integer assigneeId;
+    @Key("milestone_id")
+    private Integer milestoneId;
+    @Key("labels")
+    private String labels ;
 
     public Integer getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getAssigneeId() {
+        return assigneeId;
+    }
+
+    public void setAssigneeId(Integer assigneeId) {
+        this.assigneeId = assigneeId;
+    }
+
+    public Integer getMilestoneId() {
+        return milestoneId;
+    }
+
+    public void setMilestoneId(Integer milestoneId) {
+        this.milestoneId = milestoneId;
+    }
+
+    public String getLabels() {
+        return labels;
+    }
+
+    public void setLabels(String labels) {
+        this.labels = labels;
     }
 }

@@ -47,7 +47,7 @@ public class GithubIssuePost {
     @Key("assignee")
     private String assignee;
     @Key("milestone")
-    private String milestone;
+    private Integer milestone;
     @Key("labels")
     private List<String> labels = new ArrayList<String>();
 
@@ -63,7 +63,7 @@ public class GithubIssuePost {
         return assignee;
     }
 
-    public String getMilestone() {
+    public Integer getMilestone() {
         return milestone;
     }
 
@@ -83,7 +83,7 @@ public class GithubIssuePost {
         this.assignee = assignee;
     }
 
-    public void setMilestone(String milestone) {
+    public void setMilestone(Integer milestone) {
         this.milestone = milestone;
     }
 

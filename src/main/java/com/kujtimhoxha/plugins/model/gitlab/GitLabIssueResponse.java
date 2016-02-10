@@ -39,7 +39,7 @@ import com.google.api.client.util.Key;
  */
 public class GitLabIssueResponse {
     @Key("project_id")
-    private int projectId;
+    private Integer projectId;
     @Key("milestone")
     private GitLabMilestone milestone;
     @Key("author")
@@ -49,17 +49,65 @@ public class GitLabIssueResponse {
     @Key("state")
     private String state;
     @Key("iid")
-    private int iid;
+    private Integer iid;
     @Key("assignee")
     private GitLabUser assignee;
     @Key("labels")
     private String[] labels;
     @Key("id")
-    private int id;
+    private Integer id;
     @Key("title")
     private String title;
     @Key("updated_at")
     private DateTime updatedAt;
     @Key("created_at")
     private DateTime createdAt;
+
+    public Integer getProjectId() {
+        return projectId;
+    }
+
+    public GitLabMilestone getMilestone() {
+        return milestone;
+    }
+
+    public GitLabUser getAuthor() {
+        return author;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public Integer getIid() {
+        return iid;
+    }
+
+    public GitLabUser getAssignee() {
+        return assignee;
+    }
+
+    public String[] getLabels() {
+        return labels;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public DateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public DateTime getCreatedAt() {
+        return createdAt;
+    }
 }
