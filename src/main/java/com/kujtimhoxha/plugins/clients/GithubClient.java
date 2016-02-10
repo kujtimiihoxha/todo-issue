@@ -77,12 +77,14 @@ public class GithubClient implements Service{
         if(Arrays.asList(types).contains(".java")){
            todos.addAll(new JavaFileReader(files).todos());
         }
-        Log.getLog().info("Found "+todos.size()+" TODO-s");
+        if(todos.size()==0)Log.getLog().info("No TODO-s were found");
         removeClosed(todos);
         for (Todo todo:todos) {
+            Log.getLog().info("In file "+todo.getFile().getName()+" found "+todo.getComments().size()+" TODO-s");
+
             for (String comment:todo.getComments()) {
                 if (!comment.contains("[issue=")) {
-
+                    Log.getLog().info("New TODO found in file : "+todo.getFile().getName());
                     final GithubIssuePost issue = new GithubIssuePost();
                     final String title = new TitleFinder().find(comment);
                     if (title == null) throw new MojoExecutionException(
