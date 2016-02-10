@@ -63,7 +63,7 @@ Remember to add todo.json to the .gitignore file because it contains your access
             <plugin>
                 <groupId>com.kujtimhoxha.plugins</groupId>
                 <artifactId>todo-issue-plugin</artifactId>
-                <version>0.4</version>
+                <version>0.5</version>
                 <configuration>
                     <source>/src/main</source>
                 </configuration>
@@ -87,7 +87,7 @@ Remember to add todo.json to the .gitignore file because it contains your access
         <dependency>
             <groupId>com.kujtimhoxha.plugins</groupId>
             <artifactId>todo-issue-plugin</artifactId>
-            <version>0.4</version>
+            <version>0.5</version>
         </dependency>
     </dependencies>
 ```
@@ -107,14 +107,14 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath "com.kujtimhoxha.plugins:todo-issue-plugin:0.3"
+        classpath "com.kujtimhoxha.plugins:todo-issue-plugin:0.5"
     }
 }
 ```
 - Add dependency to the project
 ```
 dependencies {
-    compile "com.kujtimhoxha.plugins:todo-issue-plugin:0.4"
+    compile "com.kujtimhoxha.plugins:todo-issue-plugin:0.5"
 }
 ```
 - Add a task called find
