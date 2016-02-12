@@ -37,53 +37,101 @@ import com.google.api.client.util.Key;
  * @since 0.1
  */
 public class Configurations {
+
+    /**
+     * Git Server.
+     */
     @Key("git-server")
     private String gitServer;
+
+    /**
+     * Gitlab Url.
+     */
     @Key("gitlab-url")
     private String gitlabUrl;
-    @Key("type")
-    private String type;
+
+    /**
+     * User that created the repository.
+     */
     @Key("repository-username")
     private String repositoryUsername;
+
+    /**
+     * User who will write the issue.
+     */
     @Key("issuer-username")
     private String issuerUsername;
+
+    /**
+     * Token.
+     */
     @Key("token")
     private String token;
+
+    /**
+     * Repository name.
+     */
     @Key("repository")
     private String repository;
-    @Key("project-id")
-    private String projectId;
 
+    /**
+     * File link.
+     */
+    @Key("file-link")
+    private boolean fileLink = true;
 
-    public String getGitServer() {
+    /**
+     * Get git server.
+     * @return gitserver name.
+     */
+    public final  String getGitServer() {
         return gitServer;
     }
 
-    public String getGitlabUrl() {
+    /**
+     * Get gitlab url.
+     * @return gitlab url.
+     */
+    public final String getGitlabUrl() {
         return gitlabUrl;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public String getRepositoryUsername() {
+    /**
+     * Get user that created the repository.
+     * @return user that created the repository.
+     */
+    public final String getRepositoryUsername() {
         return repositoryUsername;
     }
 
-    public String getIssuerUsername() {
+    /**
+     * Get user who will write the issue.
+     * @return user who will write the issue.
+     */
+    public final String getIssuerUsername() {
         return issuerUsername;
     }
 
-    public String getToken() {
+    /**
+     * Get private token.
+     * @return  provate tken.
+     */
+    public final String getToken() {
         return token;
     }
 
-    public String getRepository() {
+    /**
+     * Get repository name.
+     * @return repository name.
+     */
+    public final String getRepository() {
         return repository;
     }
-
-    public String getProjectId() {
-        return projectId;
+    /**
+     * Is file link true.
+     * @return fileLink boolean.
+     */
+    public final boolean isFileLink() {
+        return fileLink;
     }
 }

@@ -37,7 +37,22 @@ import com.google.api.client.http.GenericUrl;
  * @since 0.1
  */
 public class GitlabMilestonesUrl extends GenericUrl {
-    public GitlabMilestonesUrl(String gitlabUrl, String repository, String user) {
-        super(String.format("%s/api/v3/projects/%s%s/milestones", gitlabUrl, user, "%2F" + repository));
+    /**
+     * Ctr.
+     * @param gitlabUrl     gitlab server url.
+     * @param repository    gitlab repository name.
+     * @param user          gitlab repository creator.
+     */
+    public GitlabMilestonesUrl(final String gitlabUrl,
+                               final String repository,
+                               final String user) {
+        super(
+            String.format(
+                "%s/api/v3/projects/%s%s/milestones",
+                gitlabUrl,
+                user,
+                "%2F" + repository
+            )
+        );
     }
 }

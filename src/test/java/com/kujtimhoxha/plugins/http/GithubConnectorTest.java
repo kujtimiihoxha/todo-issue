@@ -1,18 +1,17 @@
 package com.kujtimhoxha.plugins.http;
 
-import com.google.api.client.json.JsonObjectParser;
-import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.client.util.ObjectParser;
 import com.kujtimhoxha.plugins.config.ConfigReader;
-import com.kujtimhoxha.plugins.model.github.GithubIssuePost;
+import com.kujtimhoxha.plugins.config.Configurations;
+import com.kujtimhoxha.plugins.exception.GithubException;
 import com.kujtimhoxha.plugins.model.github.GithubIssueResponse;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.List;
 
+import static org.junit.Assert.*;
 
 /**
  * GithubConnectorTest.
@@ -23,36 +22,68 @@ import java.util.List;
  */
 public class GithubConnectorTest {
 
+    /**
+     * Gets the issues from the repository
+     *  according to the configuration file.
+     * @throws Exception
+     */
     @Test
-    @Ignore
     public void testGetIssues() throws Exception {
-        List<GithubIssueResponse> issues=new GithubConnector().getIssues(
-            ConfigReader.getConfig(System.getProperty("user.dir")+"/todo-issue.json")
-        );
-        Assert.assertTrue("Issue get failed",issues.size()>0);
+        Configurations config= ConfigReader.getConfig(
+                System.getProperty("user.dir")+"/src/test/resources/todo-issue-github.json");
+        List<GithubIssueResponse> response=new GithubConnector().getIssues(config);
+        Assert.assertTrue(response.size()>0);
     }
-    @Test
+
+    /**
+     * Fails to get issues if repository or user
+     *  are not right.
+     * @throws Exception if something goes wrong.
+     */
+    @Test(expected = GithubException.class)
+    public void testGetIssuesFail() throws Exception {
+        Configurations config= ConfigReader.getConfig(
+                System.getProperty("user.dir")+"/src/test/resources/todo-issue-github-incorrect-repository-user.json");
+
+        try {
+            List<GithubIssueResponse> response=new GithubConnector().getIssues(config);
+        }
+        catch (GithubException exp){
+            Assert.assertEquals(
+                    "Message from exception is not right",
+                    "Repository or username not found",
+                    exp.getMessage());
+            throw exp;
+        }
+
+    }
+    /**
+     * Fails to get issues if github is unavailable
+     *  or there is no internet connection.
+     *
+     * @throws Exception if something goes wrong.
+     */
+    @Test(expected = IOException.class)
     @Ignore
-    public void testCreateIssue() throws IOException {
-        ObjectParser objectParser=new JsonObjectParser(new JacksonFactory());
-        GithubIssuePost post=objectParser.parseAndClose(
-                new BufferedReader(
-                        new FileReader(
-                            this.getClass().getClassLoader().getResource("issue.json").getFile()
-                        )
-                ),
-                GithubIssuePost.class
-        );
-        GithubIssueResponse issue=new GithubConnector().createIssue(
-                ConfigReader.getConfig(
-                    System.getProperty("user.dir")+"/todo-issue.json"
-                ),
-                post
-        );
-        Assert.assertEquals(
-                "Response title does not equal with issue posted",
-                post.getTitle(),
-                issue.getTitle()
-        );
+    public void testGetIssuesFailIOException() throws Exception {
+        Configurations config= ConfigReader.getConfig(
+                System.getProperty("user.dir")+"/src/test/resources/todo-issue-github-incorrect-repository-user.json");
+
+        try {
+            List<GithubIssueResponse> response=new GithubConnector().getIssues(config);
+        }
+        catch (Exception exp){
+            Assert.assertEquals(
+                    "Message from exception is not right",
+                    "Could not reach : api.github.com",
+                    exp.getMessage());
+            throw exp;
+        }
+
+    }
+
+    @Test
+    public void testCreateIssue() throws Exception {
+
     }
 }

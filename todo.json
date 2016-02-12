@@ -4,5 +4,6 @@
   "repository-username":"kujtimiihoxha",
   "issuer-username":"kujtimiihoxha",
   "token":"token",
-  "repository":"todo-issue"
+  "repository":"todo-issue",
+  "file-link":true
 }

@@ -37,7 +37,16 @@ import com.google.api.client.http.GenericUrl;
  * @since 0.1
  */
 public class GitlabAssigneeUrl extends GenericUrl {
-    public GitlabAssigneeUrl(String gitlabUrl) {
-        super(String.format("%s/api/v3/users", gitlabUrl));
+    /**
+     * Ctr.
+     * @param gitlabUrl url of the gitlab server.
+     */
+    public GitlabAssigneeUrl(final String gitlabUrl) {
+        super(
+            String.format(
+                "%s/api/v3/users",
+                gitlabUrl
+            )
+        );
     }
 }

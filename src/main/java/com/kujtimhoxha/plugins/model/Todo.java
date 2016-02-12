@@ -28,7 +28,6 @@
 package com.kujtimhoxha.plugins.model;
 
 import java.io.File;
-import java.util.List;
 
 /**
  * Todo.
@@ -41,11 +40,11 @@ public class Todo {
     
     private File file;
     
-    private List<String> comments;
+    private Issue issue;
 
-    public Todo(File file, List<String> comments) {
+    public Todo(File file, Issue issue) {
         this.file=file;
-        this.comments=comments;
+        this.issue=issue;
     }
 
     public File getFile() {
@@ -56,10 +55,11 @@ public class Todo {
         this.file = file;
     }
 
-    public List<String> getComments() {
-        return comments;
+    public Issue getIssue() {
+        return issue;
     }
-    public void setComments(List<String> comments) {
-        this.comments = comments;
+
+    public void setIssue(Issue issue) {
+        this.issue = issue;
     }
 }

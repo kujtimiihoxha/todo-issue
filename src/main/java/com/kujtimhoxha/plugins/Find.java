@@ -1,192 +1,148 @@
-/**
- * Copyright (c) 2016 Kujtim Hoxha
- *
- * Permission is hereby granted, free of charge,
- * to any person obtaining a copy of this software
- * and associated documentation files (the "Software"),
- * to deal in the Software without restriction,
- * including without limitation the rights to use,
- * copy, modify, merge, publish, distribute, sublicense,
- * and/or sell copies of the Software, and to permit
- * persons to whom the Software is furnished to do so,
- * subject to the following conditions:
- *
- * The above copyright notice and this permission notice
- * shall be included in all copies or substantial
- * portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
- * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
- * TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
- * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
- * SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
- * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
- * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
- * OR OTHER DEALINGS IN THE SOFTWARE.
- */
 package com.kujtimhoxha.plugins;
 
-import com.kujtimhoxha.plugins.clients.GitLabClient;
 import com.kujtimhoxha.plugins.config.ConfigReader;
-import com.kujtimhoxha.plugins.filter.FileFilter;
-import com.kujtimhoxha.plugins.filter.FolderFilter;
-import com.kujtimhoxha.plugins.clients.GithubClient;
-import com.kujtimhoxha.plugins.validator.SourceValidator;
+import com.kujtimhoxha.plugins.config.Configurations;
+import com.kujtimhoxha.plugins.filter.TypeFilter;
+import com.kujtimhoxha.plugins.finder.TodoFinder;
+import com.kujtimhoxha.plugins.logger.Logger;
+import com.kujtimhoxha.plugins.filter.ExcludedFilter;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.logging.Log;
+import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Find.
+ * Find goal.
+ *
  * @author Kujtim Hoxha (kujtimii.h@gmail.com)
- * @version $Id$
- * @since 0.1
+ * @version 1.0.0
+ * @since 1.0.0
  */
 @Mojo(name = "find", defaultPhase = LifecyclePhase.PROCESS_SOURCES)
-public class Find extends AbstractMojo {
+public class Find  extends AbstractMojo {
     /**
-     * Files to search for todo's.
+     * List of folders/files to search for todo tags.
      */
-    private final List<File> files=new ArrayList<File>();
-    //
-    //@issue
-    //title : My title
-    //body :|
-    //My body goes here
-    //
-    //
-    //
-    //
-    //assignee : kujtimiihoxha
-    //labels : label,label,label
-    //milestone : 1
-    //@end
-
+    @Parameter(property = "sources", required = true)
+    private List<File> sources;
 
     /**
-     * Source directory.
-     */
-    @Parameter(property = "source", required = true)
-    private String source;
-
-    /**
-     * Excluded files or directories.
+     * List of folders/files to exclude from search.
      */
     @Parameter(property = "excludes")
-    private String[] excludes;
+    private List<File> excludes;
 
     /**
-     * File types to search for todo's.
-     */
-    @Parameter(property = "types", defaultValue = ".java")
-    private String[] types;
-
-    /**
-     * Base directory.
-     */
-    @Parameter(property = "base", defaultValue = "${basedir}")
-    private String base;
-
-    /**
-     * Todo.json Path.
+     * Configurations file contains source control details.
      */
     @Parameter(property = "config", defaultValue = "${basedir}/todo.json")
-    private String config;
+    private File config;
 
     /**
-     * Execute.
-     * @throws MojoExecutionException if there is an exception
-     *  in executing the goal
+     * Types of files to use for search.
      */
-    public void execute() throws MojoExecutionException {
-        
-        setLog(com.kujtimhoxha.plugins.logger.Log.getLog());
-        if (!new SourceValidator().validate(Paths.get(base+this.source).toString())) {
+    @Parameter(property = "types", defaultValue = ".java")
+    private List<String> types;
+
+    /**
+     * List of files to search for todo tags.
+     */
+    private static final List<File> FILES = new ArrayList<File>();
+
+    @Override
+    public final void execute() throws MojoExecutionException,
+            MojoFailureException {
+        setLog(Logger.getlog());
+        new TypeFilter(this.types);
+        if (this.sources.size() < 1) {
             throw new MojoExecutionException(
-                "Directory given does not exist or is wrong"
+                    "There must be at least one source directory/file"
             );
         }
-        addFiles(new File(Paths.get(base+this.source).toUri()));
-        try {
-            if(ConfigReader.getConfig(config).getGitServer().equals("Github")){
-                getLog().info("Project uses  Github");
-              try{
-                  new GithubClient(files,types,config).run();
-              }
-              catch (MojoExecutionException e){
-                  throw new MojoExecutionException(e.getMessage());
-              }
-            }
-            else if((ConfigReader.getConfig(config).getGitServer().equals("Gitlab"))){
-                getLog().info("Project uses  Gitlab");
-                try{
-                    new GitLabClient(files,types,config).run();
-                }
-                catch (MojoExecutionException e){
-                    throw new MojoExecutionException(e.getMessage());
-                }
-            }
-
-        } catch (IOException e) {
+        if (!this.config.exists()) {
             throw new MojoExecutionException(
-                    "Could not read config file, please add todo.json to the base directory"
+                String.format(
+                    "Configurations file  '%s' does not exist",
+                    config.getPath()
+                )
             );
+        }
+        for (File source : this.sources) {
+            if (!(source.exists())) {
+                throw new MojoExecutionException(
+                    String.format(
+                        "Directory/File '%s' does not exist",
+                        source.getPath()
+                    )
+                );
+            }
+            addFiles(source);
+        }
+
+        final Configurations conf;
+        try {
+            conf = ConfigReader.getConfig(config.getAbsolutePath());
+        } catch (IOException e) {
+            getLog().error(e.getMessage());
+            throw new MojoExecutionException(e.getMessage());
+        }
+        try {
+            new TodoFinder().find(FILES, conf);
+        } catch (MojoExecutionException exp) {
+            throw exp;
         }
     }
 
     /**
      * Adds files from directory and subdirectories if they are not excluded.
-     * @param directory source directory.
-     * @throws MojoExecutionException
+     * @param source source directory.
+     * @throws MojoExecutionException if something goes wrong.
      */
-    public void addFiles(File directory) throws  MojoExecutionException{
-        final List<String> folders=new ArrayList<String>();
-        final List<String> files=new ArrayList<String>();
-        for(String file : excludes){
-            final File f=new File(file);
-            if(f.exists()) {
-                if (f.isDirectory()) {
-                    folders.add(file);
-                } else if (f.isFile()) {
-                    files.add(file);
+    public final void addFiles(final File source) throws
+            MojoExecutionException {
+        final List<File> folders = new ArrayList<File>();
+        final List<File> files = new ArrayList<File>();
+        for (final File exclude : this.excludes) {
+            if (exclude.exists()) {
+                if (exclude.isDirectory()) {
+                    folders.add(exclude);
+                } else if (exclude.isFile()) {
+                    files.add(exclude);
                 }
             }
         }
-        File[] fList = directory.listFiles();
-        for (File file : fList != null ? fList : new File[0]) {
-            if (file.isFile()) {
-                if(new FileFilter(files).accept(file,file.getName())){
-                    this.files.add(file);
-                }
-            } else if (file.isDirectory()) {
-                if(new FolderFilter(folders).accept(file,file.getName())){
+        if (source.isFile()) {
+            if (new TypeFilter(types)
+                    .accept(source, source.getName())) {
+                Find.FILES.add(source);
+            }
+        } else {
+            File[] subFiles = source.listFiles();
+            if (subFiles == null) {
+                subFiles = new File[0];
+            }
+            for (File file : subFiles) {
+                if (file.isFile()) {
+                    if (new ExcludedFilter(files)
+                            .accept(file, file.getName())) {
+                        if (new TypeFilter(types)
+                                .accept(source, source.getName())) {
+                            Find.FILES.add(file);
+                        }
+                    }
+                } else if (file.isDirectory() && new ExcludedFilter(folders)
+                        .accept(file, file.getName())) {
                     addFiles(file);
                 }
             }
         }
     }
 
-    /**
-     * Gradle Adapter will be used for gradle tasks.
-     */
-    public void gradleAdapter(String source,String[] excludes,String[] types, String config){
-        this.base=System.getProperty("user.dir");
-        this.source=source;
-        if(excludes==null) this.excludes=new String[0];
-        else this.excludes=excludes;
-        if(types==null) this.types= new String[]{".java"};
-        else this.types=types;
-        if(config==null) this.config= this.base+"/todo.json";
-        else this.config=config;
-    }
 }

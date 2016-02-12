@@ -4,6 +4,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 /**
  * TypeFilterTest.
@@ -13,46 +17,38 @@ import java.io.File;
  * @since 0.1
  */
 public class TypeFilterTest {
-
     /**
-     * Returns true if the file extension is in the extensions list.
-     * @throws Exception
+     * Accepts file that has acceptable extension.
+     * @throws Exception if something
+     *  goes wrong.
      */
     @Test
-    public void testAcceptFileType() throws Exception {
-        String[] types=new String[1];
-        types[0]=".java";
+    public void testAcceptTrue() throws Exception {
+        final List<String> excludes = new ArrayList<String>();
+        excludes.add(".java");
+        final File testFile=new File(System.getProperty("user.dir")+"/src/main/java/com/kujtimhoxha/plugins/Find.java");
         Assert.assertTrue(
-            "Type filter should return true if the file extension is in the list",
-            new TypeFilter(types)
-                .accept(
-                    new File(
-                          System.getProperty("user.dir")+"/src/main/java/com/kujtimhoxha/plugins/Find.java"
-                    ),
-                    new File(
-                         System.getProperty("user.dir")+"/src/main/java/com/kujtimhoxha/plugins/Find.java"
-                    ).getName()
+                new TypeFilter(excludes).accept(
+                        testFile,
+                        testFile.getName()
                 )
         );
     }
+
+
     /**
-     * Returns false if the file extension is not in the extensions list.
-     * @throws Exception
+     * Dies not accepts file that has unacceptable extension.
+     * @throws Exception if something
+     *  goes wrong.
      */
     @Test
-    public void testDoesNotAcceptFileType() throws Exception {
-        String[] types=new String[1];
-        types[0]=".json";
+    public void testAcceptFalse() throws Exception {
+        final List<String> excludes = new ArrayList<String>();
+        final File testFile=new File(System.getProperty("user.dir")+"/.travis.yml");
         Assert.assertFalse(
-            "Type filter should return false if the file extension is not in the list",
-            new TypeFilter(types)
-                .accept(
-                    new File(
-                            System.getProperty("user.dir")+"/src/main/java/com/kujtimhoxha/plugins/Find.java"
-                    ),
-                    new File(
-                            System.getProperty("user.dir")+"/src/main/java/com/kujtimhoxha/plugins/Find.java"
-                    ).getName()
+                new TypeFilter(excludes).accept(
+                        testFile,
+                        testFile.getName()
                 )
         );
     }

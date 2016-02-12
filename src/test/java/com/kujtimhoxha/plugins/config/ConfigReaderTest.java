@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
+
 /**
  * ConfigReaderTest.
  *
@@ -15,26 +16,30 @@ import java.io.IOException;
 public class ConfigReaderTest {
 
     /**
-     * Read the configuration json
+     * Reads the configuration file.
+     * @throws Exception if something
+     *  goes wrong.
      */
     @Test
-    public void testGetConfig() throws IOException {
+    public void testGetConfig() throws Exception {
+        Configurations config=ConfigReader.getConfig(
+                System.getProperty("user.dir")+"/src/test/resources/todo-issue-github.json");
         Assert.assertEquals(
-                "Config file read was successful",
+                "Content read is not what is expected",
                 "Github",
-                ConfigReader.getConfig(
-                    System.getProperty("user.dir")+"/todo.json"
-                ).getGitServer()
+                config.getGitServer()
         );
     }
 
     /**
-     * Throws exception if path not right
+     * Throws io exception if the file
+     *  is not in the location.
+     * @throws Exception if something
+     *  goes wrong.
      */
     @Test(expected = IOException.class)
-    public void testErrorIfPathNotRight() throws IOException {
-        ConfigReader.getConfig(
-                System.getProperty("user.dir")+"/falsePath.json"
-        ).getGitServer();
+    public void testGetConfigFail() throws Exception {
+        Configurations config=ConfigReader.getConfig(
+                System.getProperty("user.dir")+"/src/test/todo.json");
     }
 }
