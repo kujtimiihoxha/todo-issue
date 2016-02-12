@@ -1,1 +1,1 @@
-# Developing version 1.0.0-SNAPSHOT
+# Developing version 1.0.0
