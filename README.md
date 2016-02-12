@@ -17,7 +17,7 @@ Todo issue from version 1.0.0 uses [YAML](http://yaml.org/) human friendly data 
             ### Markdown is also supported.
         assignee: kujtimiihoxha
         labels: java,todo
-        milestone: v1.0.0
+        milestone: v1.0.1
     @end
     */
 ```
@@ -55,7 +55,7 @@ This is not allowed :x:
         ### Markdown is also supported.
         assignee: kujtimiihoxha
         labels: java,todo
-        milestone: v1.0.0
+        milestone: v1.0.1
     @end
     */
 ```
@@ -91,7 +91,7 @@ Remember to add todo.json to the .gitignore file because it contains your access
             <plugin>
                 <groupId>com.kujtimhoxha.plugins</groupId>
                 <artifactId>todo-issue-plugin</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.1</version>
                 <configuration>
                  <sources>
                    <source>{source folder path }</source>
@@ -124,7 +124,7 @@ mvn clean install
           <plugin>
             <groupId>com.kujtimhoxha.plugins</groupId>
             <artifactId>todo-issue-plugin</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.1</version>
             <configuration>
             <sources>
               <source>{source folder path }</source>
@@ -154,7 +154,7 @@ mvn clean install -Ptodo
         <dependency>
             <groupId>com.kujtimhoxha.plugins</groupId>
             <artifactId>todo-issue-plugin</artifactId>
-            <version>0.4</version>
+            <version>1.0.1</version>
         </dependency>
     </dependencies>
 ```

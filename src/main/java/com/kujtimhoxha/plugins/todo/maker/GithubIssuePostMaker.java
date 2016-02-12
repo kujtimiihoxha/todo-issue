@@ -66,11 +66,10 @@ public class GithubIssuePostMaker implements Maker<GithubIssuePost> {
                             );
             if (githubMilestone != null) {
                 issuePost.setMilestone(
-                    String.valueOf(githubMilestone.getId())
+                   githubMilestone.getNumber()
                 );
             }
         }
-        issuePost.setMilestone(issue.getMilestone());
         return issuePost;
     }
 }
