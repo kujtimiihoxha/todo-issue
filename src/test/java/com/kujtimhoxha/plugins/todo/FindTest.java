@@ -1,4 +1,4 @@
-package com.kujtimhoxha.plugins;
+package com.kujtimhoxha.plugins.todo;
 
 import com.kujtimhoxha.plugins.todo.Find;
 import org.apache.maven.plugin.MojoExecutionException;
