@@ -279,6 +279,8 @@ Please test your changes before sending a pull request by running :<br>
 ### Dependencies 
 - [Google Http Client](https://github.com/google/google-http-java-client)
 - [SnakeYaml](https://bitbucket.org/asomov/snakeyaml)
+- [Maven plugins](https://github.com/apache/maven-plugins)
+
 ### Licence
 
 The todo-issue is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
