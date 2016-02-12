@@ -3,7 +3,9 @@ package com.kujtimhoxha.plugins.todo.filter;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * TypeFilter.
@@ -16,14 +18,14 @@ public class TypeFilter implements FilenameFilter {
     /**
      * List of extensions to accept.
      */
-    private  final List<String> extensions = new ArrayList<String>();
+    private  final Set<String> extensions = new HashSet<String>();
 
     /**
      * Ctr.
      * @param includes TypeFilter to accept.
      */
     public TypeFilter(final List<String> includes) {
-        this.extensions.addAll(includes);
+        this.extensions.addAll(new HashSet<String>(includes));
     }
 
     @Override

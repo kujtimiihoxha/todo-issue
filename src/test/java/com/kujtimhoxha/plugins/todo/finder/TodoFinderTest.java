@@ -6,7 +6,9 @@ import org.junit.Test;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * TodoFinderTest.
@@ -23,7 +25,7 @@ public class TodoFinderTest {
      */
     @Test
     public void testFind() throws Exception {
-        final List<File> files = new ArrayList<File>();
+        final Set<File> files = new HashSet<File>();
         files.add(new File(System.getProperty("user.dir")+"/src/test/resources/finder/Test.html"));
         files.add(new File(System.getProperty("user.dir")+"/src/test/resources/finder/Test.java"));
         files.add(new File(System.getProperty("user.dir")+"/src/test/resources/finder/Test.js"));

@@ -10,8 +10,7 @@ import org.yaml.snakeyaml.scanner.ScannerException;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * TodoFinder.
@@ -24,14 +23,14 @@ public class TodoFinder implements Finder {
     /**
      * List of files to search for todo tags.
      */
-    private final List<File> files;
+    private final Set<File> files;
 
     /**
      * Ctr.
      * @param fls files
      */
-    public TodoFinder(final List<File> fls) {
-        this.files = fls;
+    public TodoFinder(final Set<File> fls) {
+        this.files = new HashSet<File>(fls);
     }
 
     @Override

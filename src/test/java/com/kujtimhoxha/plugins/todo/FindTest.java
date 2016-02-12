@@ -24,7 +24,7 @@ public class FindTest {
 
     /**
      * Test if the plugin throws exception when
-     *  the configuration file not write.
+     *  the configuration file is not right.
      * @throws Exception if something goes wrong.
      */
     @Test(expected = MojoExecutionException.class)
@@ -42,6 +42,7 @@ public class FindTest {
      * @throws Exception if something goes wrong.
      */
     @Test
+
     public final void everythingOk() throws Exception {
         File testProject = new File(
             System.getProperty("user.dir"),

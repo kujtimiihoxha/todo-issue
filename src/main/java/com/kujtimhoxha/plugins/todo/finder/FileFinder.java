@@ -7,7 +7,9 @@ import org.apache.maven.plugin.MojoExecutionException;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * FileFinder.
@@ -51,7 +53,7 @@ public class FileFinder implements Finder {
         this.types = tp;
     }
     @Override
-    public final List<File> find() throws MojoExecutionException {
+    public final Set<File> find() throws MojoExecutionException {
         for (File source : this.sources) {
             if (!(source.exists())) {
                 throw new MojoExecutionException(
@@ -63,7 +65,7 @@ public class FileFinder implements Finder {
             }
             this.addFiles(source);
         }
-        return FileFinder.FILES;
+        return new HashSet<File>(FileFinder.FILES);
     }
 
     /**

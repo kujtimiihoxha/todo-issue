@@ -18,6 +18,9 @@
                     <sources>
                         <source>${basedir}/src</source>
                     </sources>
+                    <types>
+                        <type>.html</type>
+                    </types>
                 </configuration>
                 <executions>
                     <execution>

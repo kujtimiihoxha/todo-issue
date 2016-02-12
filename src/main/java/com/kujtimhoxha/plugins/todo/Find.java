@@ -20,6 +20,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Find goal.
@@ -73,7 +74,7 @@ public class Find  extends AbstractMojo {
             );
         }
 
-        final List<File> files =
+        final Set<File> files =
                 new FileFinder(
                         sources,
                         excludes,
@@ -85,6 +86,9 @@ public class Find  extends AbstractMojo {
         } catch (IOException e) {
             getLog().error(e.getMessage());
             throw new MojoExecutionException(e.getMessage());
+        }
+        if(files.size()==0){
+            return;
         }
         List<Todo> todos = new TodoFinder(files).find();
         if (todos.isEmpty()) {

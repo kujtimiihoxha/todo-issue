@@ -3,7 +3,9 @@ package com.kujtimhoxha.plugins.todo.filter;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * ExcludedFilter.
@@ -16,14 +18,14 @@ public class ExcludedFilter implements FilenameFilter {
     /**
      * Excluded files list.
      */
-    private final List<File> files = new ArrayList<File>();
+    private final Set<File> files = new HashSet<File>();
 
     /**
      * Ctr.
      * @param excludes excluded files
      */
     public ExcludedFilter(final List<File> excludes) {
-        this.files.addAll(excludes);
+        this.files.addAll(new HashSet<File>(excludes));
     }
 
     @Override
