@@ -283,4 +283,4 @@ Please test your changes before sending a pull request by running :<br>
 
 ### Licence
 
-The todo-issue is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+Todo-issue is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
