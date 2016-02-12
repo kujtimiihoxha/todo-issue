@@ -76,13 +76,13 @@ public class FileFinder implements Finder {
     public final void addFiles(final File source) throws
             MojoExecutionException {
         final List<File> folders = new ArrayList<File>();
-        final List<File> files = new ArrayList<File>();
+        final List<File> excluded = new ArrayList<File>();
         for (final File exclude : this.excludes) {
             if (exclude.exists()) {
                 if (exclude.isDirectory()) {
                     folders.add(exclude);
                 } else if (exclude.isFile()) {
-                    files.add(exclude);
+                    excluded.add(exclude);
                 }
             }
         }
@@ -98,7 +98,7 @@ public class FileFinder implements Finder {
             }
             for (File file : subFiles) {
                 if (file.isFile()) {
-                    if (new ExcludedFilter(files)
+                    if (new ExcludedFilter(excluded)
                             .accept(file, file.getName())
                             && new TypeFilter(types)
                             .accept(file, file.getName())) {

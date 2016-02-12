@@ -2,7 +2,6 @@ package com.kujtimhoxha.plugins.todo.filter;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

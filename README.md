@@ -7,7 +7,7 @@ the todo-s will be removed from the source automatically in the next execution o
 #### See it in action
 To se a demo project clone [this](https://github.com/kujtimiihoxha/testing-todo-issue) repository and follow the instructions.
 ### Syntax
-Todo issue from version 1.0.0 uses YAML script for issues.The yaml script is put inside the ```@todo``` and ```@end``` tags.
+Todo issue from version 1.0.0 uses [YAML](http://yaml.org/) human friendly data serialization standard for issues.The yaml script is put inside the ```@todo``` and ```@end``` tags.
 ```yaml
     /*
     @todo
@@ -203,6 +203,70 @@ Run:
     </configuration>
 ```
 
+# Usage with Gradle
+Although  todo-issue is a maven plugin if needed todo-issue can be used in gradle (Android development projects).
+For use with gradle todo-issue has a special GradleRunner that will be used to run with gradle you must setup the build.gradle
+to use todo-issue.
+
+- Add buildscript : 
+```
+    buildscript {
+        repositories {
+           mavenCentral()
+        }
+        dependencies {
+            classpath "com.kujtimhoxha.plugins:todo-issue-plugin:1.0.0"
+        }
+    }
+```
+
+- Add maven repository and todo-issue dependency to your project :
+```
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        compile "com.kujtimhoxha.plugins:todo-issue-plugin:1.0.0"
+    }
+```
+- Add find task :
+```
+    task find(){
+        def sources = new ArrayList<File>();
+        sources.add(new File({source path}));
+        sources.add(new File({another source path}));
+        def todo= new  com.kujtimhoxha.plugins.todo.GradleRunner(sources)
+        todo.run()
+    }
+```
+- If you need more configuration just use other constructors :
+```java 
+    GradleRunner(final List<File> sources,final List<File> excludes)
+    GradleRunner(final List<File> sources, final List<File> excludes,final File config,final List<String> types)
+```
+
+The defaults for this parameters are the same as the maven defaults.<br>
+To run this task just execute :
+
+```
+    gradle task:find
+```
+
+### Run on every build
+To run find on every build just add it to the build dependencies.
+```
+    build{
+        dependsOn find
+    }
+```
+
+Then when you execute :
+```
+    gradle build 
+```
+find task will be executed automatically.
+
+You can find a demo gradle project in [this](https://github.com/kujtimiihoxha/gradle-todo-issue) repository.
 ### Contribute
 
 To help improve todo-issue clone this repo and submit pull requests with suggested changes.<br>
@@ -211,6 +275,10 @@ Please test your changes before sending a pull request by running :<br>
 ```bash
  mvn clean install 
 ```   
+
+### Dependencies 
+- [Google Http Client](https://github.com/google/google-http-java-client)
+- [SnakeYaml](https://bitbucket.org/asomov/snakeyaml)
 ### Licence
 
 The todo-issue is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)

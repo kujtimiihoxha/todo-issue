@@ -87,7 +87,7 @@ public class Find  extends AbstractMojo {
             getLog().error(e.getMessage());
             throw new MojoExecutionException(e.getMessage());
         }
-        if(files.size()==0){
+        if (files.size() == 0) {
             return;
         }
         List<Todo> todos = new TodoFinder(files).find();
