@@ -26,6 +26,7 @@ public class GithubConnectorTest {
      * @throws Exception
      */
     @Test
+    @Ignore
     public void testGetIssues() throws Exception {
         Configurations config= ConfigReader.getConfig(
                 System.getProperty("user.dir")+"/src/test/resources/todo-issue-github.json");
@@ -39,6 +40,7 @@ public class GithubConnectorTest {
      * @throws Exception if something goes wrong.
      */
     @Test(expected = GithubException.class)
+    @Ignore
     public void testGetIssuesFail() throws Exception {
         Configurations config= ConfigReader.getConfig(
                 System.getProperty("user.dir")+"/src/test/resources/todo-issue-github-incorrect-repository-user.json");

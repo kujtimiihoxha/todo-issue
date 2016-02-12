@@ -23,7 +23,7 @@ public class ConfigReaderTest {
     @Test
     public void testGetConfig() throws Exception {
         Configurations config=ConfigReader.getConfig(
-                System.getProperty("user.dir")+"/src/test/resources/todo-issue-github.json");
+                System.getProperty("user.dir")+"/src/test/resources/todo.json");
         Assert.assertEquals(
                 "Content read is not what is expected",
                 "Github",
@@ -40,6 +40,6 @@ public class ConfigReaderTest {
     @Test(expected = IOException.class)
     public void testGetConfigFail() throws Exception {
         Configurations config=ConfigReader.getConfig(
-                System.getProperty("user.dir")+"/src/test/todo.json");
+                System.getProperty("user.dir")+"/src/test/123.json");
     }
 }
