@@ -59,7 +59,9 @@ This is not allowed :x:
     @end
     */
 ```
-
+If you are using [Intellij](https://www.jetbrains.com/idea/) you can use these [settings](http://kujtimhoxha.com/wp-content/uploads/2016/02/settings.zip) to add a live template to make it easy to add todo comments, unqip the archive and import the settings to Intellij.   
+This is how it would look like :   
+![Todo](http://kujtimhoxha.com/wp-content/uploads/2016/02/todo.gif)
 ### Configuration file todo.json
 Before you can run the ```find``` goal you must add the file todo.json to the base directory(where the pom.xml is if you ar using maven).
 Remember to add todo.json to the .gitignore file because it contains your access token.
