@@ -1,5 +1,6 @@
 package com.kujtimhoxha.plugins;
 
+import com.kujtimhoxha.plugins.todo.Find;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.testing.MojoRule;
 import org.junit.Rule;

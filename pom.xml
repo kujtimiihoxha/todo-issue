@@ -57,7 +57,7 @@
             <version>1.0.0-SNAPSHOT</version>
             <configuration>
               <sources>
-                <source>/home/kujtimiihoxha/Projects/todo-issue/src/test/java/com/kujtimhoxha/plugins/matcher/TodoMatcherTest.java</source>
+                <source>/home/kujtimiihoxha/Projects/todo-issue/src/test/java/com/kujtimhoxha/plugins/todo/matcher/</source>
               </sources>
             </configuration>
             <executions>
@@ -138,7 +138,7 @@
                   <artifactId>maven-checkstyle-plugin</artifactId>
                   <version>2.17</version>
                   <configuration>
-                    <excludes>com/kujtimhoxha/plugins/old/**/*,com/kujtimhoxha/plugins/model/**/*</excludes>
+                    <excludes>com/kujtimhoxha/plugins/old/**/*,com/kujtimhoxha/plugins/todo/model/**/*</excludes>
                   </configuration>
                   <executions>
                     <execution>
