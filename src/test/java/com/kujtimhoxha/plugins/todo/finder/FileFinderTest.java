@@ -51,7 +51,7 @@ public class FileFinderTest {
         types.add(".java");
         final List<File> excludes=new ArrayList<File>();
         final FileFinder finder=new FileFinder(sources,excludes,types);
-        System.out.println(finder.find().size()==1);
+        System.out.println(finder.find().size());
         Assert.assertTrue(finder.find().size()==1);
     }
 

@@ -18,14 +18,14 @@ public class TypeFilter implements FilenameFilter {
     /**
      * List of extensions to accept.
      */
-    private  final Set<String> extensions = new HashSet<String>();
+    private Set<String> extensions;
 
     /**
      * Ctr.
      * @param includes TypeFilter to accept.
      */
     public TypeFilter(final List<String> includes) {
-        this.extensions.addAll(new HashSet<String>(includes));
+        this.extensions = new HashSet<String>(includes);
     }
 
     @Override

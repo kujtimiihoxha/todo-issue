@@ -18,14 +18,14 @@ public class ExcludedFilter implements FilenameFilter {
     /**
      * Excluded files list.
      */
-    private final Set<File> files = new HashSet<File>();
+    private final Set<File> files;
 
     /**
      * Ctr.
      * @param excludes excluded files
      */
     public ExcludedFilter(final List<File> excludes) {
-        this.files.addAll(new HashSet<File>(excludes));
+        this.files = new HashSet<File>(excludes);
     }
 
     @Override

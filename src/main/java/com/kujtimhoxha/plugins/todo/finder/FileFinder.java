@@ -37,7 +37,7 @@ public class FileFinder implements Finder {
     /**
      * List of files to search for todo tags.
      */
-    private static final List<File> FILES = new ArrayList<File>();
+    private List<File> files = new ArrayList<File>();
 
     /**
      * Ctr.
@@ -65,7 +65,7 @@ public class FileFinder implements Finder {
             }
             this.addFiles(source);
         }
-        return new HashSet<File>(FileFinder.FILES);
+        return new HashSet<File>(this.files);
     }
 
     /**
@@ -89,7 +89,7 @@ public class FileFinder implements Finder {
         if (source.isFile()) {
             if (new TypeFilter(types)
                     .accept(source, source.getName())) {
-                FileFinder.FILES.add(source);
+                this.files.add(source);
             }
         } else {
             File[] subFiles = source.listFiles();
@@ -102,7 +102,7 @@ public class FileFinder implements Finder {
                             .accept(file, file.getName())
                             && new TypeFilter(types)
                             .accept(file, file.getName())) {
-                            FileFinder.FILES.add(file);
+                        this.files.add(file);
                     }
                 } else if (file.isDirectory() && new ExcludedFilter(folders)
                         .accept(file, file.getName())) {
