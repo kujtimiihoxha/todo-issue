@@ -79,7 +79,7 @@ Remember to add todo.json to the .gitignore file because it contains your access
  - ```issuer-username``` : the user who is writing the issues.
  - ```token``` : the user access token.
  - ```repository``` : the repository to post issues to .
- - ```file-link``` : if set to false it will not add the file and line link to the end of the issue by default it is true .
+ - ```file-link``` : if set to false it will not add the file and line link to the end of the issue, by default it is true .
  
 ### Plugin configurations
 - To execute ```find``` goal add the plugin to your build tag.
@@ -164,40 +164,40 @@ Run:
 - **Excludes** : Folders/Files to exclude from the search.
 ```xml
     <configuration>
-    <sources>
-      <source>{source folder path }</source>
-      <source>{any other folder path }</source>
-    </sources>
-    <excludes>
-    <exclude>{folder/file path to exclude}</exclude>
-    <exclude>{another folder/file path to exclude}</exclude>
-    </excludes>
+        <sources>
+          <source>{source folder path }</source>
+          <source>{any other folder path }</source>
+        </sources>
+        <excludes>
+            <exclude>{folder/file path to exclude}</exclude>
+            <exclude>{another folder/file path to exclude}</exclude>
+        </excludes>
     </configuration>
 ```
 
 - **Config** : Specify the path of the todo.json file, by default it will look for todo.json in the base directory of the project.
 ```xml
     <configuration>
-    <sources>
-      <source>{source folder path }</source>
-      <source>{any other folder path }</source>
-    </sources>
-    <config>{new path}/todo.json</config>
+        <sources>
+          <source>{source folder path }</source>
+          <source>{any other folder path }</source>
+        </sources>
+        <config>{new path}/todo.json</config>
     </configuration>
 ```
 
 - **Types** : File types to search for todos, by default it only searches in ```.java``` files you can change this property and override the dfault.
 ```xml
     <configuration>
-    <sources>
-      <source>{source folder path }</source>
-      <source>{any other folder path }</source>
-    </sources>
-    <types>
-    <type>.java</type>
-    <type>.html</type>
-    <type>.js</type>
-    </types>    
+        <sources>
+          <source>{source folder path }</source>
+          <source>{any other folder path }</source>
+        </sources>
+        <types>
+            <type>.java</type>
+            <type>.html</type>
+            <type>.js</type>
+        </types>    
     </configuration>
 ```
 
