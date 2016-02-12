@@ -54,7 +54,16 @@ public class Find  extends AbstractMojo {
      */
     @Parameter(property = "types", defaultValue = ".java")
     private List<String> types;
-
+    /*
+    @todo
+        title: My Title
+        body: |
+            # Here is the body of the issue
+        assignee: kujtimiihoxha
+        labels: bug,dev,test
+        milestone: v1.0.1
+    @end
+    */
     @Override
     public final void execute() throws MojoExecutionException,
             MojoFailureException {
