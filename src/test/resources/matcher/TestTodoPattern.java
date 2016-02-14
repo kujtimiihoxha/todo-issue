@@ -1,6 +1,6 @@
 import java.util.regex.Pattern;
 
-public class Todo {
+public class TodoPattern {
     private final Pattern PATTERN = Pattern.compile(
             "@todo([\\s\\S]*?)@end" //will not me consiteded a todo.
     );
