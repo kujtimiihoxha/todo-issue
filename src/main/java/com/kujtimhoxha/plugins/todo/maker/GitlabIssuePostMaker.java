@@ -29,14 +29,21 @@ public class GitlabIssuePostMaker implements Maker<GitlabIssuePost> {
         if (conf.isFileLink()) {
             final StringBuilder body =
                 new StringBuilder(issue.getBody());
+            final String url;
+            if (conf.getGitlabUrl().endsWith("/")) {
+                url = conf.getGitlabUrl();
+            }
+            else {
+                url = conf.getGitlabUrl() + "/";
+            }
             final StringBuilder fileLink =
-                new StringBuilder(conf.getGitlabUrl());
+                new StringBuilder(url);
             fileLink.append(conf.getRepositoryUsername())
                     .append("/")
                     .append(conf.getRepository())
                     .append("/tree/master")
                     .append(
-                        file.getPath()
+                        file.getAbsolutePath()
                             .replace(System.getProperty("user.dir"), "")
                     );
             body.append("\n").append(
@@ -47,7 +54,7 @@ public class GitlabIssuePostMaker implements Maker<GitlabIssuePost> {
                     issue.getLineNumber(),
                     fileLink.append("#L")
                             .append(issue.getLineNumber())
-                            .toString()
+                            .toString().replace("\\","/")
                 )
             );
             issue.setBody(body.toString());

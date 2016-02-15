@@ -44,11 +44,11 @@ public class GitlabTodoModifier implements Modifier<GitLabIssueResponse> {
                 input = input.replace(
                         current + "\n",
                         current + "\n" + current
-                                .replace("title", "id")
+                                .replace("title: ", "id: ")
                                 .replace(
                                     response.getTitle(),
                                     String.valueOf(
-                                            response.getId()
+                                            response.getIid()
                                     )
                                 ) + "\n"
                 );
@@ -71,10 +71,10 @@ public class GitlabTodoModifier implements Modifier<GitLabIssueResponse> {
                 for (Todo todo : todos) {
                     if (todo.getIssue().getId() != null) {
                         if (todo.getIssue().getId().intValue()
-                                == issue.getId().intValue()) {
+                                == issue.getIid().intValue()) {
                             Logger.getlog().info(
                                     "Todo with issue id #"
-                                            + issue.getId()
+                                            + issue.getIid()
                                             + " is closed and will be deleted"
                             );
                         }
@@ -105,7 +105,7 @@ public class GitlabTodoModifier implements Modifier<GitLabIssueResponse> {
                                 );
                         while (matcher.find()) {
                             if (matcher.group(0).replaceAll(" ", "")
-                                    .contains("id:" + issue.getId())) {
+                                    .contains("id:" + issue.getIid())) {
 
                                 final String output =
                                         input.toString()

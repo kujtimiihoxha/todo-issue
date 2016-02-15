@@ -34,6 +34,8 @@ public class FileFinderTest {
         types.add(".js");
         final List<File> excludes=new ArrayList<File>();
         excludes.add(new File(System.getProperty("user.dir")+"/src/test/resources/languages/test.js"));
+        System.out.println(System.getProperty("user.dir"));
+        System.out.println(new File(System.getProperty("user.dir")+"/src/test/resources/languages/test.js").getParent());
         final FileFinder finder=new FileFinder(sources,excludes,types);
         Assert.assertTrue(finder.find().size()==3);
     }

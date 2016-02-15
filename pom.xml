@@ -4,7 +4,7 @@
   <groupId>com.kujtimhoxha.plugins</groupId>
   <artifactId>todo-issue-plugin</artifactId>
   <packaging>maven-plugin</packaging>
-  <version>1.0.1</version>
+  <version>1.0.3</version>
   <name>todo-issue</name>
   <url>http://maven.apache.org</url>
 
@@ -47,7 +47,31 @@
   </build>
 
   <profiles>
-
+<profile>
+  <id>find</id>
+  <build>
+  <plugins>
+  <plugin>
+    <groupId>com.kujtimhoxha.plugins</groupId>
+    <artifactId>todo-issue-plugin</artifactId>
+    <version>1.0.2</version>
+    <configuration>
+      <sources>
+        <source>/home/kujtimiihoxha/Projects/todo-issue/src/test/resources/finder/Test.java</source>
+      </sources>
+      <config>/home/kujtimiihoxha/Projects/todo-issue/todo-issue.json</config>
+    </configuration>
+    <executions>
+      <execution>
+        <goals>
+          <goal>find</goal>
+        </goals>
+      </execution>
+    </executions>
+  </plugin>
+  </plugins>
+  </build>
+</profile>
     <profile>
       <id>release</id>
       <build>

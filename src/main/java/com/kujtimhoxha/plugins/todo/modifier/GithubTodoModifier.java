@@ -45,7 +45,7 @@ public class GithubTodoModifier implements Modifier<GithubIssueResponse> {
                 input = input.replace(
                         current + "\n",
                         current + "\n" + current
-                                .replace("title", "id")
+                                .replace("title: ", "id: ")
                                 .replace(
                                         response.getTitle(),
                                         String.valueOf(

@@ -36,7 +36,7 @@ public class GithubIssuePostMaker implements Maker<GithubIssuePost> {
                     .append(conf.getRepository())
                     .append("/tree/master")
                     .append(
-                        file.getPath()
+                        file.getAbsolutePath()
                             .replace(System.getProperty("user.dir"), "")
                     );
             body.append("\n").append(
@@ -47,7 +47,7 @@ public class GithubIssuePostMaker implements Maker<GithubIssuePost> {
                     issue.getLineNumber(),
                     fileLink.append("#L")
                             .append(issue.getLineNumber())
-                            .toString()
+                            .toString().replace("\\","/")
                 )
             );
             issue.setBody(body.toString());
