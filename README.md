@@ -275,6 +275,66 @@ Then when you execute :
 find task will be executed automatically.
 
 You can find a demo gradle project in [this](https://github.com/kujtimiihoxha/gradle-todo-issue) repository.
+## Usage with Visual Studio Projects
+Todo-issue can also be used with visual studio projects but you need to have Java and Maven installed.
+To use todo-issue with your Visual Studio project you need to add a simple pom.xml file to your project where your .sln file is in this pom write :
+```xml
+    <project>
+      <modelVersion>4.0.0</modelVersion> 
+      <groupId>your group id </groupId>   <!--can be tour domain name like com.kujtimhoxha-->
+      <artifactId>your artifact name </artifactId>  <!--application name -->
+      <version>1</version>
+
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>com.kujtimhoxha.plugins</groupId>
+                    <artifactId>todo-issue-plugin</artifactId>
+                    <version>1.0.5</version>
+                    <configuration>
+                        <sources>
+                            <source>${source-1}</source>
+                            <source>${source-2}</source>
+                        </sources>
+                        <types>
+                        <type>.cs</type>
+                        </types>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>find</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+        
+    </project>
+```
+
+It is recommended to exclude unnecessary folders like the bin, obj and other folder that do not contain source code, in .net application 
+it is recommended to exclude the scripts folder if you have many third party scripts because this will make the process of reading the files faster.
+How to exclude folders and files is described [here](#other-plugin-configurations).
+Then you need to add a todo.json file in the same place, the json file is as described [above](#configuration-file-todojson).   
+
+Now to execute this plugin in every build you need to we need to create a custom .bat file and place it where we put the pom.xml and todo.json
+```batch
+
+SET JAVA_HOME={Path to java home}
+cd {Path to your project}
+call {Path to maven home}\bin\mvn clean install
+
+```
+
+Save this file as todo.bat go to your project properties and go to build event and add this line to your post-build events
+```batch
+call {Path to your project}\todo.bat
+```
+
+Now on every build the plugin will search for todo's in your .cs files.
+
 ### Contribute
 
 To help improve todo-issue clone this repo and submit pull requests with suggested changes.<br>
