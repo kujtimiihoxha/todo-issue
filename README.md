@@ -316,8 +316,8 @@ To use todo-issue with your Visual Studio project you need to add a simple pom.x
 
 It is recommended to exclude unnecessary folders like the bin, obj and other folder that do not contain source code, in .net application 
 it is recommended to exclude the scripts folder if you have many third party scripts because this will make the process of reading the files faster.
-How to exclude folders and files is described [here](#other-plugin-configurations).
-Then you need to add a todo.json file in the same place, the json file is as described [above](#configuration-file-todojson).   
+How to exclude folders and files is described [here](https://github.com/kujtimiihoxha/todo-issue#other-plugin-configurations).
+Then you need to add a todo.json file in the same place, the json file is as described [above](https://github.com/kujtimiihoxha/todo-issue#configuration-file-todojson).   
 
 Now to execute this plugin in every build you need to we need to create a custom .bat file and place it where we put the pom.xml and todo.json
 ```batch
