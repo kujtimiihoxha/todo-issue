@@ -276,7 +276,8 @@ find task will be executed automatically.
 
 You can find a demo gradle project in [this](https://github.com/kujtimiihoxha/gradle-todo-issue) repository.
 ## Usage with Visual Studio Projects
-Todo-issue can also be used with visual studio projects but you need to have Java and Maven installed.
+Todo-issue can also be used with visual studio projects but you need to have Java and Maven installed.   
+To install java follow [this](http://kujtimhoxha.com/2015/09/16/installing-the-java-jdk/) tutorial and to install maven follow [this](http://www.mkyong.com/maven/how-to-install-maven-in-windows/) tutorial .
 To use todo-issue with your Visual Studio project you need to add a simple pom.xml file to your project where your .sln file is in this pom write :
 ```xml
     <project>
