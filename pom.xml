@@ -4,7 +4,7 @@
   <groupId>com.kujtimhoxha.plugins</groupId>
   <artifactId>todo-issue-plugin</artifactId>
   <packaging>maven-plugin</packaging>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
   <name>todo-issue</name>
   <url>http://maven.apache.org</url>
 

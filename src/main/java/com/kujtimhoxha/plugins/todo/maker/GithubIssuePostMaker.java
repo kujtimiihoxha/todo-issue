@@ -43,7 +43,7 @@ public class GithubIssuePostMaker implements Maker<GithubIssuePost> {
                 String.format(
                     "```todo-issue``` File : [%s](%s), Line : [L%s](%s)",
                     file.getName(),
-                    fileLink.toString(),
+                    fileLink.toString().replace("\\","/"),
                     issue.getLineNumber(),
                     fileLink.append("#L")
                             .append(issue.getLineNumber())

@@ -50,7 +50,7 @@ public class GitlabIssuePostMaker implements Maker<GitlabIssuePost> {
                 String.format(
                     "```todo-issue``` File : [%s](%s), Line : [L%s](%s)",
                     file.getName(),
-                    fileLink.toString(),
+                    fileLink.toString().replace("\\","/"),
                     issue.getLineNumber(),
                     fileLink.append("#L")
                             .append(issue.getLineNumber())
@@ -58,6 +58,7 @@ public class GitlabIssuePostMaker implements Maker<GitlabIssuePost> {
                 )
             );
             issue.setBody(body.toString());
+            System.out.println(fileLink);
         }
         issuePost.setDescription(issue.getBody());
         if (issue.getAssignee() != null) {
