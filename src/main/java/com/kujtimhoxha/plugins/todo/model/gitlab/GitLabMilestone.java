@@ -22,7 +22,7 @@ public class GitLabMilestone {
     @Key("iid")
     private  Integer iid;
     @Key("id")
-    private String id;
+    private Integer id;
     @Key("title")
     private String title;
     @Key("created_at")
@@ -50,7 +50,7 @@ public class GitLabMilestone {
         return iid;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 

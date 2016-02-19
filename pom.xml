@@ -4,7 +4,7 @@
   <groupId>com.kujtimhoxha.plugins</groupId>
   <artifactId>todo-issue-plugin</artifactId>
   <packaging>maven-plugin</packaging>
-  <version>1.0.5</version>
+  <version>1.0.6</version>
   <name>todo-issue</name>
   <url>http://maven.apache.org</url>
 
@@ -54,7 +54,7 @@
   <plugin>
     <groupId>com.kujtimhoxha.plugins</groupId>
     <artifactId>todo-issue-plugin</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.6</version>
     <configuration>
       <sources>
         <source>/home/kujtimiihoxha/Projects/todo-issue/src/test/resources/finder/Test.java</source>

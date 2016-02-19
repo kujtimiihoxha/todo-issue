@@ -19,7 +19,7 @@ Todo issue from version 1.0.0 uses [YAML](http://yaml.org/) human friendly data 
             ### Markdown is also supported.
         assignee: kujtimiihoxha
         labels: java,todo
-        milestone: v1.0.5
+        milestone: v1.0.6
     @end
     */
 ```
@@ -43,7 +43,7 @@ This is not allowed :x:
             ### Markdown is also supported.
     assignee: kujtimiihoxha
         labels: java,todo
-    milestone: v1.0.0
+    milestone: v1.0.6
     @end
     */
 ```
@@ -57,7 +57,7 @@ This is not allowed :x:
         ### Markdown is also supported.
         assignee: kujtimiihoxha
         labels: java,todo
-        milestone: v1.0.5
+        milestone: v1.0.6
     @end
     */
 ```
@@ -99,7 +99,7 @@ Remember to add todo.json to the .gitignore file because it contains your access
             <plugin>
                 <groupId>com.kujtimhoxha.plugins</groupId>
                 <artifactId>todo-issue-plugin</artifactId>
-                <version>1.0.5</version>
+                <version>1.0.6</version>
                 <configuration>
                  <sources>
                    <source>{source folder path }</source>
@@ -132,7 +132,7 @@ mvn clean install
           <plugin>
             <groupId>com.kujtimhoxha.plugins</groupId>
             <artifactId>todo-issue-plugin</artifactId>
-            <version>1.0.5</version>
+            <version>1.0.6</version>
             <configuration>
             <sources>
               <source>{source folder path }</source>
@@ -162,7 +162,7 @@ mvn clean install -Ptodo
         <dependency>
             <groupId>com.kujtimhoxha.plugins</groupId>
             <artifactId>todo-issue-plugin</artifactId>
-            <version>1.0.5</version>
+            <version>1.0.6</version>
         </dependency>
     </dependencies>
 ```
@@ -223,7 +223,7 @@ to use todo-issue.
            mavenCentral()
         }
         dependencies {
-            classpath "com.kujtimhoxha.plugins:todo-issue-plugin:1.0.5"
+            classpath "com.kujtimhoxha.plugins:todo-issue-plugin:1.0.6"
         }
     }
 ```
@@ -234,7 +234,7 @@ to use todo-issue.
         mavenCentral()
     }
     dependencies {
-        compile "com.kujtimhoxha.plugins:todo-issue-plugin:1.0.5"
+        compile "com.kujtimhoxha.plugins:todo-issue-plugin:1.0.6"
     }
 ```
 - Add find task :
@@ -291,7 +291,7 @@ To use todo-issue with your Visual Studio project you need to add a simple pom.x
                 <plugin>
                     <groupId>com.kujtimhoxha.plugins</groupId>
                     <artifactId>todo-issue-plugin</artifactId>
-                    <version>1.0.5</version>
+                    <version>1.0.6</version>
                     <configuration>
                         <sources>
                             <source>${source-1}</source>

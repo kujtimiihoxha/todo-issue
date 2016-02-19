@@ -18,9 +18,9 @@ public class GithubMilestone {
     @Key("labels_url")
     private String labelsUrl;
     @Key("id")
-    private int id;
+    private Integer id;
     @Key("number")
-    private int number;
+    private Integer number;
     @Key("state")
     private String state;
     @Key("title")
@@ -54,11 +54,11 @@ public class GithubMilestone {
         return labelsUrl;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 

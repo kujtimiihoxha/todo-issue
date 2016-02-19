@@ -19,7 +19,7 @@ public class GitlabIssuePost {
     @Key("assignee_id")
     private Integer assigneeId;
     @Key("milestone_id")
-    private String milestoneId;
+    private Integer milestoneId;
     @Key("labels")
     private String labels ;
 
@@ -55,11 +55,11 @@ public class GitlabIssuePost {
         this.assigneeId = assigneeId;
     }
 
-    public String getMilestoneId() {
+    public Integer getMilestoneId() {
         return milestoneId;
     }
 
-    public void setMilestoneId(String milestoneId) {
+    public void setMilestoneId(Integer milestoneId) {
         this.milestoneId = milestoneId;
     }
 
