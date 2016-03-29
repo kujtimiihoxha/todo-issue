@@ -64,7 +64,7 @@ This is not allowed :x:
 If you are using [Intellij](https://www.jetbrains.com/idea/) you can use these [settings](http://kujtimhoxha.com/wp-content/uploads/2016/02/settings.zip) to add a live template to make it easy to write todo comments, unzip the archive and import the settings to Intellij.   
 This is how it would look like :   
 
-![Todo](http://kujtimhoxha.com/wp-content/uploads/2016/02/todo-issue.gif)
+![Todo](http://kujtimhoxha.com/content/images/2016/02/todo-issue.gif)
 
 Just start writing ```@todo``` and hit ```enter``` then Intellij will automatically add the todo.
 
